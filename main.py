@@ -8,6 +8,7 @@ mousex = 0
 mousey = 0 
 start_screen = True
 mousepressed = False
+playersel = False
 res = (1920, 1080)
 run = True
 wn = pygame.display.set_mode((res))
@@ -20,6 +21,7 @@ pointer = pygame.image.load("pointer\pointer.png").convert_alpha()
 startBG = pygame.image.load('start screen\startBG.png').convert_alpha()
 start_button = pygame.image.load("start screen\start_button.png").convert_alpha()
 start_button_click = pygame.image.load("start screen\start_button_cliced.png").convert_alpha()
+player_sel = pygame.image.load('start screen\player sel.png').convert_alpha()
 #def
 def game_render():
     global mousex, mousey
@@ -55,11 +57,15 @@ while run:
 
         #start button
         wn.blit(start_button, (895, 480))
-
+        if mousex > 895 and mousex < 1114 and mousey > 480 and mousey < 552:
+            wn.blit(start_button_click, (895, 480))
 
         if mousex > 895 and mousex < 1114 and mousey > 480 and mousey < 552 and mousepressed:
             wn.blit(start_button_click, (895, 480))
-       
+            time.sleep(0.5)
+            playersel = True
+    if playersel:
+        wn.blit(player_sel, (0,0))
 
     #if gamerunning1:
         
