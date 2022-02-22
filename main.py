@@ -9,6 +9,10 @@ mousey = 0
 start_screen = True
 mousepressed = False
 playersel = False
+player1_Girl = False
+player1_Boy = False
+player2_Boy = False
+player2_Girl = False
 res = (1920, 1080)
 run = True
 wn = pygame.display.set_mode((res))
@@ -23,7 +27,7 @@ start_button = pygame.image.load("start screen\start_button.png").convert_alpha(
 start_button_click = pygame.image.load("start screen\start_button_cliced.png").convert_alpha()
 player_sel = pygame.image.load('start screen\player sel.png').convert_alpha()
 button_box = pygame.image.load('start screen/button_box.png').convert_alpha()
-button_box_blue = pygame.image.load("start screen/button_box_blue.png")
+button_box_blue = pygame.image.load("start screen/button_box_blue.png").convert_alpha()
 #def
 def game_render():
     global mousex, mousey
@@ -75,9 +79,12 @@ while run:
         #wn.blit(button_box, (113,192))
         if mousex > 113 and mousex < 740 and mousey > 192 and mousey < 781 and playersel:
             wn.blit(button_box, (113, 192))
+            player1_Girl = True
+            player2_Boy = True
         if mousex > 1210 and mousex < 1837 and mousey > 178 and mousey < 767 and playersel:
             wn.blit(button_box_blue, (1208, 180))
-       
+            player1_Boy = True
+            player2_Girl = True
 
     #if gamerunning1:
         
