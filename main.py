@@ -2,6 +2,7 @@ import pygame, time, sys, os ,dotenv, random
 from pygame.locals import *
 from pygame import mixer
 from Player_1 import Player1
+#from stage1 import stage_1
 pygame.init()
 
 #var
@@ -16,9 +17,16 @@ player1_Boy = False
 player2_Boy = False
 player2_Girl = False
 zone_sel = False
+stage_1 = False
+stage_2 = False
+stage_3 = False
 res = (1920, 1080)
 run = True
 mousepressed = 0
+P1X = 216
+P1Y = 647
+P2X = 1700
+P2Y = 649
 
 
 wn = pygame.display.set_mode((res))
@@ -26,7 +34,7 @@ mainClock = pygame.time.Clock()
 
 #img
 BG = pygame.image.load("BG/bg.png")
-char = pygame.image.load("Char\char1.png").convert_alpha()
+player1png = pygame.image.load("Char\Test_img_id.png").convert_alpha()
 pointer = pygame.image.load("pointer\pointer.png").convert_alpha()
 startBG = pygame.image.load('start screen\startBG.png').convert_alpha()
 start_button = pygame.image.load("start screen\start_button.png").convert_alpha()
@@ -38,7 +46,7 @@ zone_sel_png = pygame.image.load("start screen\zone sel.png").convert()
 button_box_green = pygame.image.load('start screen/button_box_green.png').convert_alpha()
 button_rec_blue = pygame.image.load('start screen/button_rec_Blue.png').convert_alpha()
 button_rec_red = pygame.image.load('start screen/button_rec_Red.png').convert_alpha()
-
+volcano_stage = pygame.image.load("BG\sample_volcano.png").convert()
 #def
 def game_render():
     global mousex, mousey
@@ -119,18 +127,31 @@ while run:
         if mousex > 1150 and mousex < 1852 and mousey > 580 and mousey < 1000:
                 wn.blit(button_rec_red, (0, 0))
                 if mousepressed > 0:
-                    print('hi')
+                    print('red')
+                    stage_1 =True
+                    zone_sel = False
     
         if mousex > 658 and mousex < 1356 and mousey > 202 and mousey < 535:
                 wn.blit(button_rec_blue, (0, 0))
                 if mousepressed > 0:
                     print('hi')
+                    zone_sel = False
 
         if mousex > 46 and mousex < 755 and mousey > 565 and mousey < 1015:
                 wn.blit(button_box_green, (0, 0))
                 if mousepressed > 0:
                     print('hi')
-                
+                    zone_sel = False
+    
+    if stage_1:
+        wn.blit(volcano_stage, (0,0))
+
+        if player1.right1:
+            P1X += 10
+        if player1.left1:
+            P1X -= 10
+        wn.blit(player1png, (P1X, P1Y))
+     
 
     #if gamerunning1:
         
@@ -139,7 +160,10 @@ while run:
     player1.update()
     game_render()
     fps_s = time.time() - start
-    fps1 = 1. / fps_s
+    if fps_s < 1:
+        fps1 = 1. / fps_s
+    else:
+        fps1 = 0
     fps = int(fps1)
     pygame.display.update()
     mainClock.tick(60)
