@@ -1,12 +1,16 @@
+from asyncio import wait_for
 import pygame, time, sys, os ,dotenv, random
 from pygame.locals import *
 from pygame import mixer
 from Player_1 import Player1
+from stage1 import stage_1
 #from stage1 import stage_1
+
 pygame.init()
 
 #var
-fps = 0
+grav = 5
+fps = 1
 mousex = 0
 mousey = 0 
 start_screen = True
@@ -103,17 +107,33 @@ while run:
             wn.blit(button_box_blue, (1208, 180))
             if mousepressed > 0:
                 player1_Girl = False
-                player2_Boy = True
-                zone_sel = True
-                playersel = False
+                player1_Boy = True
+                player2_Girl = True
+                player2_Boy = False
+                
+                
                 
         if mousex > 113 and mousex < 740 and mousey > 192 and mousey < 781:
             wn.blit(button_box, (113, 192))
             if mousepressed > 0:
                 player1_Girl = True
                 player2_Boy = False
-                zone_sel = True
-                playersel = False
+                player1_boy = True
+                player2_Girl = False
+                
+        if player1_Boy and mousepressed == 0:
+            zone_sel = True
+            playersel = False
+        if player1_Girl and mousepressed == 0:
+            zone_sel = True
+            playersel = False
+        if player2_Boy and mousepressed == 0:
+            zone_sel = True
+            playersel = False
+        if player2_Girl and mousepressed == 0:
+            zone_sel = True
+            playersel = False
+            
                 
 
 
@@ -123,29 +143,33 @@ while run:
 
     if zone_sel:
         wn.blit(zone_sel_png, (0,0))
+        wait = time.time()
+        if wait > 500:
+            if mousex > 1150 and mousex < 1852 and mousey > 580 and mousey < 1000:
+                    wn.blit(button_rec_red, (0, 0))
+                    if mousepressed > 0:
+                        print('red')
+                        stage_1 =True
+                        zone_sel = False
+        
+            if mousex > 658 and mousex < 1356 and mousey > 202 and mousey < 535:
+                    wn.blit(button_rec_blue, (0, 0))
+                    if mousepressed > 0:
+                        print('hi')
+                        zone_sel = False
 
-        if mousex > 1150 and mousex < 1852 and mousey > 580 and mousey < 1000:
-                wn.blit(button_rec_red, (0, 0))
-                if mousepressed > 0:
-                    print('red')
-                    stage_1 =True
-                    zone_sel = False
-    
-        if mousex > 658 and mousex < 1356 and mousey > 202 and mousey < 535:
-                wn.blit(button_rec_blue, (0, 0))
-                if mousepressed > 0:
-                    print('hi')
-                    zone_sel = False
-
-        if mousex > 46 and mousex < 755 and mousey > 565 and mousey < 1015:
-                wn.blit(button_box_green, (0, 0))
-                if mousepressed > 0:
-                    print('hi')
-                    zone_sel = False
+            if mousex > 46 and mousex < 755 and mousey > 565 and mousey < 1015:
+                    wn.blit(button_box_green, (0, 0))
+                    if mousepressed > 0:
+                        print('hi')
+                        zone_sel = False
     
     if stage_1:
         wn.blit(volcano_stage, (0,0))
-
+        if P1Y < 647:
+            P1Y += 5
+        if player1.jump1 and P1Y > 600:
+            P1Y -= 10
         if player1.right1:
             P1X += 10
         if player1.left1:
@@ -153,17 +177,19 @@ while run:
         wn.blit(player1png, (P1X, P1Y))
      
 
-    #if gamerunning1:
-        
-    #if gamerunning2:
+    
 
     player1.update()
     game_render()
     fps_s = time.time() - start
-    if fps_s < 1:
+    if fps_s == 0.:
+        print('0 FPS error')
+    if fps_s < 40.:
         fps1 = 1. / fps_s
+    if fps_s > 40.:
+        fps1 = fps_s
     else:
-        fps1 = 0
+        print("low FPS error")
     fps = int(fps1)
     pygame.display.update()
     mainClock.tick(60)
