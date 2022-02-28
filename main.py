@@ -3,6 +3,7 @@ import pygame, time, sys, os ,dotenv, random
 from pygame.locals import *
 from pygame import mixer
 from Player_1 import Player1
+from Player_2 import Player2
 from stage1 import stage_1
 #from stage1 import stage_1
 
@@ -38,7 +39,8 @@ mainClock = pygame.time.Clock()
 
 #img
 BG = pygame.image.load("BG/bg.png")
-player1png = pygame.image.load("Char\Test_img_id.png").convert_alpha()
+player1pngboy = pygame.image.load("Char\Test_img_id.png").convert_alpha()
+player2pnggirl = pygame.image.load('Char/testpose1.png')
 pointer = pygame.image.load("pointer\pointer.png").convert_alpha()
 startBG = pygame.image.load('start screen\startBG.png').convert_alpha()
 start_button = pygame.image.load("start screen\start_button.png").convert_alpha()
@@ -59,7 +61,7 @@ def game_render():
     wn.blit(pointer, (player1.mouse))
 
 player1 = Player1(100,10)
-
+player2 = Player2(100,10)
 
  
 while run:
@@ -168,28 +170,39 @@ while run:
         wn.blit(volcano_stage, (0,0))
         if P1Y < 647:
             P1Y += 5
-        if player1.jump1 and P1Y > 600:
+        elif player1.jump1 and P1Y > 600:
             P1Y -= 10
-        if player1.right1:
+        elif player1.right1:
             P1X += 10
-        if player1.left1:
+        elif player1.left1:
             P1X -= 10
-        wn.blit(player1png, (P1X, P1Y))
-     
+        wn.blit(player1pngboy, (P1X, P1Y))
+        if P2Y < 647:
+            P2Y += 5
+        elif player2.jump1 and P1Y > 600:
+            P2Y -= 10
+            print('hi')
+        elif player2.right1:
+            P2X += 10
+            print('hi')
+        elif player2.left1:
+            P2X -= 10
+        wn.blit(player2pnggirl, (P2X, P2Y))
+
 
     
 
     player1.update()
     game_render()
     fps_s = time.time() - start
-    if fps_s == 0.:
-        print('0 FPS error')
+    #if fps_s == 0.:
+       
     if fps_s < 40.:
         fps1 = 1. / fps_s
     if fps_s > 40.:
         fps1 = fps_s
-    else:
-        print("low FPS error")
+    #else:
+        
     fps = int(fps1)
     pygame.display.update()
     mainClock.tick(60)
