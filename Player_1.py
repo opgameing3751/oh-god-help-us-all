@@ -8,7 +8,7 @@ class Player1:
         self.max_hp = max_hp
         self.hp = max_hp
         self.damage = damage
-        self.image = pygame.image.load("Char\char1.png")
+        self.image = pygame.image.load("Char/Test_img_id.png")
         self.right1 = False
         self.left1 = False
         self.jump1 = False
@@ -41,4 +41,7 @@ class Player1:
             self.left1 = True
         else:
             self.left1 = False
-        
+
+
+
+
