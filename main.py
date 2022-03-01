@@ -5,12 +5,15 @@ from pygame import mixer
 from Player_1 import Player1
 from Player_2 import Player2
 from stage1 import stage_1
+
 #from stage1 import stage_1
 
 pygame.init()
 
 #var
-grav = 5
+RED = (255,0,0)
+GREEN = (0,255,0)
+grav = 10
 fps = 1
 mousex = 0
 mousey = 0 
@@ -32,7 +35,8 @@ P1X = 216
 P1Y = 647
 P2X = 1700
 P2Y = 649
-
+jump1go = 0
+jump2go = 0
 
 wn = pygame.display.set_mode((res))
 mainClock = pygame.time.Clock()
@@ -60,9 +64,28 @@ def game_render():
     wn.blit(fpsrender, (0,0))
     wn.blit(pointer, (player1.mouse))
 
+class HealthBar():
+    def __init__(self, x, y, hp, max_hp):
+        self.x = x
+        self.y = y
+        self.hp = hp
+        self.max_hp = max_hp
+    def draw(self, hp):
+        # update with new health
+        self.hp = hp
+        # calculate health ratio
+        ratio = self.hp / self.max_hp
+        pygame.draw.rect(wn, RED, (self.x, self.y, 150, 20))
+        pygame.draw.rect(wn, GREEN, (self.x, self.y, 150 * ratio, 20))
+
+
+
+
 player1 = Player1(100,10)
 player2 = Player2(100,10)
-
+player1_health_bar = HealthBar(50,50, player1.hp, player1.max_hp)
+player2_health_bar = HealthBar(500,50, player2.hp, player2.max_hp)
+RGB = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
  
 while run:
     print(mousepressed)
@@ -78,11 +101,11 @@ while run:
         mousepressed = 1
     if event.type == pygame.MOUSEBUTTONUP:
         mousepressed = 0
-            
+          
     
     #font renders
     font = pygame.font.Font(None,30)
-    fpsrender = font.render(f'FPS {fps}',True,(255,255,255))
+    fpsrender = font.render(f'FPS {fps}',True,(RGB))
     
     if start_screen:
         wn.blit(startBG, (0,0))
@@ -176,15 +199,23 @@ while run:
 
         if P2Y < 647:
             P2Y += 5
-        if keystate[pygame.K_i] and P1Y > 600:
-            P2Y -= 10
+        if keystate[pygame.K_i] and P2Y > 600:
+            jump1go = 20
             print('hi')
         if keystate[pygame.K_l]:
             P2X += 10
             print('hi')
         if keystate[pygame.K_j]:
             P2X -= 10
+        if jump1go > 0:
+            P2Y -= jump1go
+            jump1go -= 1
+        if jump2go > 0:
+            P1Y -= 10
+            jump2go -= 1
         wn.blit(player2pnggirl, (P2X, P2Y))
+        player1_health_bar.draw(player1.hp)
+        player2_health_bar.draw(player2.hp)
     print(f'{P2X},{P2Y}')
 
     
