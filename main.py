@@ -135,13 +135,7 @@ while run:
         if player2_Girl and mousepressed == 0:
             zone_sel = True
             playersel = False
-            
-                
-
-
-        
-      
-            
+              
 
     if zone_sel:
         wn.blit(zone_sel_png, (0,0))
@@ -170,25 +164,28 @@ while run:
         wn.blit(volcano_stage, (0,0))
         if P1Y < 647:
             P1Y += 5
-        elif player1.jump1 and P1Y > 600:
+        if player1.jump1 and P1Y > 600:
             P1Y -= 10
-        elif player1.right1:
+        if player1.right1:
             P1X += 10
-        elif player1.left1:
+        if player1.left1:
             P1X -= 10
         wn.blit(player1pngboy, (P1X, P1Y))
+
+        keystate = pygame.key.get_pressed()
+
         if P2Y < 647:
             P2Y += 5
-        elif player2.jump1 and P1Y > 600:
+        if keystate[pygame.K_i] and P1Y > 600:
             P2Y -= 10
             print('hi')
-        elif player2.right1:
+        if keystate[pygame.K_l]:
             P2X += 10
             print('hi')
-        elif player2.left1:
+        if keystate[pygame.K_j]:
             P2X -= 10
         wn.blit(player2pnggirl, (P2X, P2Y))
-
+    print(f'{P2X},{P2Y}')
 
     
 
