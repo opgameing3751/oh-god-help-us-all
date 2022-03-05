@@ -1,5 +1,6 @@
 from asyncio import wait_for
-import pygame, time, sys, os ,dotenv, random
+import pygame, time, sys, os ,dotenv, random, math
+
 from pygame.locals import *
 from pygame import mixer
 from Player_1 import Player1
@@ -28,6 +29,7 @@ zone_sel = False
 stage_1 = False
 stage_2 = False
 stage_3 = False
+pause_menu = False
 res = (1920, 1080)
 run = True
 mousepressed = 0
@@ -43,8 +45,8 @@ mainClock = pygame.time.Clock()
 
 #img
 BG = pygame.image.load("BG/bg.png")
-player1pngboy = pygame.image.load("Char\Test_img_id.png").convert_alpha()
-player2pnggirl = pygame.image.load('Char/testpose1.png')
+#player1pngboy = pygame.image.load("Char\Test_img_id.png").convert_alpha()
+#player2pnggirl = pygame.image.load('Char/testpose1.png')
 pointer = pygame.image.load("pointer\pointer.png").convert_alpha()
 startBG = pygame.image.load('start screen\startBG.png').convert_alpha()
 start_button = pygame.image.load("start screen\start_button.png").convert_alpha()
@@ -57,6 +59,10 @@ button_box_green = pygame.image.load('start screen/button_box_green.png').conver
 button_rec_blue = pygame.image.load('start screen/button_rec_Blue.png').convert_alpha()
 button_rec_red = pygame.image.load('start screen/button_rec_Red.png').convert_alpha()
 volcano_stage = pygame.image.load("BG\sample_volcano.png").convert()
+
+#sounds
+punch_sound = pygame.mixer.Sound("SOUNDS\punch.wav")
+
 #def
 def game_render():
     global mousex, mousey
@@ -75,8 +81,8 @@ class HealthBar():
         self.hp = hp
         # calculate health ratio
         ratio = self.hp / self.max_hp
-        pygame.draw.rect(wn, RED, (self.x, self.y, 150, 20))
-        pygame.draw.rect(wn, GREEN, (self.x, self.y, 150 * ratio, 20))
+        pygame.draw.rect(wn, RGB, (self.x, self.y, 600, 25))
+        pygame.draw.rect(wn, RGG, (self.x, self.y, 600 * ratio, 25))
 
 
 
@@ -84,10 +90,12 @@ class HealthBar():
 player1 = Player1(100,10)
 player2 = Player2(100,10)
 player1_health_bar = HealthBar(50,50, player1.hp, player1.max_hp)
-player2_health_bar = HealthBar(500,50, player2.hp, player2.max_hp)
+player2_health_bar = HealthBar(1250,50, player2.hp, player2.max_hp)
 RGB = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
- 
+RGG = (random.randint(0,255),random.randint(0,255),random.randint(0,255)) 
+player1.hp = 75
 while run:
+    
     print(mousepressed)
     if pygame.mouse.get_visible():
                 pygame.mouse.set_visible(False)
@@ -158,7 +166,11 @@ while run:
         if player2_Girl and mousepressed == 0:
             zone_sel = True
             playersel = False
-              
+    
+
+    def stage_1_music():
+        mixer.music.load("SOUNDS\Mick Gordon - 11. BFG Division.mp3")
+        mixer.music.play(1)
 
     if zone_sel:
         wn.blit(zone_sel_png, (0,0))
@@ -169,6 +181,7 @@ while run:
                     if mousepressed > 0:
                         print('red')
                         stage_1 =True
+                        stage_1_music()
                         zone_sel = False
         
             if mousex > 658 and mousex < 1356 and mousey > 202 and mousey < 535:
@@ -186,19 +199,21 @@ while run:
     if stage_1:
         wn.blit(volcano_stage, (0,0))
         if P1Y < 647:
-            P1Y += 5
+            P1Y += (grav)
         if player1.jump1 and P1Y > 600:
-            P1Y -= 10
+            jump2go = 20
         if player1.right1:
             P1X += 10
         if player1.left1:
             P1X -= 10
-        wn.blit(player1pngboy, (P1X, P1Y))
+        player1.update()
+        #player1.draw()
+        #wn.blit(player1.image, (P1X, P1Y))
 
         keystate = pygame.key.get_pressed()
 
         if P2Y < 647:
-            P2Y += 5
+            P2Y += (grav)
         if keystate[pygame.K_i] and P2Y > 600:
             jump1go = 20
             print('hi')
@@ -211,9 +226,15 @@ while run:
             P2Y -= jump1go
             jump1go -= 1
         if jump2go > 0:
-            P1Y -= 10
+            P1Y -= jump2go
             jump2go -= 1
-        wn.blit(player2pnggirl, (P2X, P2Y))
+        player2.update()
+        #player2.draw()
+        #wn.blit(player2.image, (P2X, P2Y))
+        distance = math.sqrt ((math.pow(P1X-P2X,2)) + (math.pow(P1Y-P2Y,2)))
+        if player1.punch and distance < 50:
+            pygame.mixer.Sound.play(punch_sound)
+            
         player1_health_bar.draw(player1.hp)
         player2_health_bar.draw(player2.hp)
     print(f'{P2X},{P2Y}')
