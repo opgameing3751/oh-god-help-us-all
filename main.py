@@ -39,14 +39,17 @@ P2X = 1700
 P2Y = 649
 jump1go = 0
 jump2go = 0
+walkcount = 0
+rightboy = False
+rightgirl = False
 
 wn = pygame.display.set_mode((res))
 mainClock = pygame.time.Clock()
 
 #img
 BG = pygame.image.load("BG/bg.png")
-#player1pngboy = pygame.image.load("Char\Test_img_id.png").convert_alpha()
-#player2pnggirl = pygame.image.load('Char/testpose1.png')
+player1pngboy = pygame.image.load("Char\Test_img_id.png").convert_alpha()
+player2pnggirl = pygame.image.load('Char/testpose1.png').convert_alpha()
 pointer = pygame.image.load("pointer\pointer.png").convert_alpha()
 startBG = pygame.image.load('start screen\startBG.png').convert_alpha()
 start_button = pygame.image.load("start screen\start_button.png").convert_alpha()
@@ -70,6 +73,18 @@ def game_render():
     wn.blit(fpsrender, (0,0))
     wn.blit(pointer, (player1.mouse))
 
+def play():
+    global walkcount
+    if walkcount +1 >=18:
+        walkcount = 0
+    elif rightboy:    
+        wn.blit(player1.image[walkcount // 3], (P1X,P1Y))
+    elif rightgirl:
+        wn.blit(player2.image[walkcount // 3], (P2X,P2Y))
+    elif rightboy == False:
+        wn.blit(player1_Boy, (P1X, P1Y))
+    elif rightgirl == False:
+        wn.blit(player1_Girl, (P2X, P2Y))
 class HealthBar():
     def __init__(self, x, y, hp, max_hp):
         self.x = x
@@ -87,8 +102,8 @@ class HealthBar():
 
 
 
-player1 = Player1(100,10)
-player2 = Player2(100,10)
+player1 = Player1(70,20)
+player2 = Player2(150,5)
 player1_health_bar = HealthBar(50,50, player1.hp, player1.max_hp)
 player2_health_bar = HealthBar(1250,50, player2.hp, player2.max_hp)
 RGB = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
@@ -240,7 +255,7 @@ while run:
     print(f'{P2X},{P2Y}')
 
     
-
+    play()
     player1.update()
     game_render()
     fps_s = time.time() - start
