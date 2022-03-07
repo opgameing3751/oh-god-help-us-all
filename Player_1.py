@@ -18,7 +18,11 @@ class Player1:
         self.frame_index = 0
         self.action = 0
         self.update_time = pygame.time.get_ticks()
-        
+        self.image = pygame.image.load('Char\BOY\wank\BW0.png'), pygame.image.load('Char\BOY\wank\BW1.png'), pygame.image.load('Char\BOY\wank\BW2.png'), pygame.image.load('Char/BOY/wank/BW3.png'),pygame.image.load('Char/BOY/wank/BW4.png'),pygame.image.load('Char/BOY/wank/BW5.png'),pygame.image.load('Char/BOY/wank/BW6.png')
+        self.imageL = []
+        for i in range(7):
+            imageL_ = pygame.transform.flip(self.image[i],True,False)
+            self.imageL.append(imageL_)
     def update(self):
     
         self.mouse = pygame.mouse.get_pos()

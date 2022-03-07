@@ -34,9 +34,9 @@ res = (1920, 1080)
 run = True
 mousepressed = 0
 P1X = 216
-P1Y = 647
+P1Y = 627
 P2X = 1700
-P2Y = 649
+P2Y = 629
 jump1go = 0
 jump2go = 0
 walkcount = 0
@@ -73,18 +73,7 @@ def game_render():
     wn.blit(fpsrender, (0,0))
     wn.blit(pointer, (player1.mouse))
 
-def play():
-    global walkcount
-    if walkcount +1 >=18:
-        walkcount = 0
-    elif rightboy:    
-        wn.blit(player1.image[walkcount // 3], (P1X,P1Y))
-    elif rightgirl:
-        wn.blit(player2.image[walkcount // 3], (P2X,P2Y))
-    elif rightboy == False:
-        wn.blit(player1_Boy, (P1X, P1Y))
-    elif rightgirl == False:
-        wn.blit(player1_Girl, (P2X, P2Y))
+
 class HealthBar():
     def __init__(self, x, y, hp, max_hp):
         self.x = x
@@ -102,6 +91,78 @@ class HealthBar():
 
 
 
+def play():
+    global walkcount, P1Y,P1X,P2X,P2Y, jump1go, jump2go
+    print(player1.imageL)
+    if P1Y < 687:
+        P1Y += (grav)
+    if player1.jump1 and P1Y > 600:
+        jump2go = 20
+    if player1.right1:
+        P1X += 10
+    if player1.left1:
+        P1X -= 10
+        player1.update()
+        #player1.draw()
+        #wn.blit(player1.image, (P1X, P1Y))
+
+    keystate = pygame.key.get_pressed()
+
+    if P2Y < 647:
+         P2Y += (grav)
+    if keystate[pygame.K_i] and P2Y > 600:
+        jump1go = 20
+        
+    if keystate[pygame.K_l]:
+        P2X += 10
+        
+    if keystate[pygame.K_j]:
+        P2X -= 10
+    if jump1go > 0:
+        P2Y -= jump1go
+        jump1go -= 1
+    if jump2go > 0:
+        P1Y -= jump2go
+        jump2go -= 1
+    player2.update()
+    #player2.draw()
+    #wn.blit(player2.image, (P2X, P2Y))
+    distance = math.sqrt ((math.pow(P1X-P2X,2)) + (math.pow(P1Y-P2Y,2)))
+    if player1.punch and distance < 50:
+        pygame.mixer.Sound.play(punch_sound)
+            
+    player1_health_bar.draw(player1.hp)
+    player2_health_bar.draw(player2.hp)
+
+    #walking and ani
+
+    walkcount += 1
+    if walkcount >=32:
+        walkcount = 0
+    if player1.right1:    
+        wn.blit(player1.image[walkcount // 5], (P1X,P1Y))
+    elif player1.right1 == False and player1.left1 == False:
+        wn.blit(player1pngboy, (P1X, P1Y))
+    if player1.left1:
+        wn.blit(player1.imageL[walkcount // 5], (P1X,P1Y))
+    elif player1.left1 == False and player1.right1 == False:
+        wn.blit(player1pngboy, (P1X, P1Y))
+
+
+
+    if player2.right2:
+        wn.blit(player2.image[walkcount // 9], (P2X,P2Y))
+    elif player2.right2 == False and player2.left2 == False:
+        wn.blit(player2pnggirl, (P2X, P2Y))
+    if player2.left2:
+        wn.blit(player2.imageL[walkcount // 9], (P2X, P2Y))
+    elif player2.left2 == False and player2.right2 == False:
+        wn.blit(player2pnggirl, (P2X, P2Y))
+
+
+
+
+
 player1 = Player1(70,20)
 player2 = Player2(150,5)
 player1_health_bar = HealthBar(50,50, player1.hp, player1.max_hp)
@@ -111,7 +172,7 @@ RGG = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
 player1.hp = 75
 while run:
     
-    print(mousepressed)
+    
     if pygame.mouse.get_visible():
                 pygame.mouse.set_visible(False)
     start = time.time()
@@ -194,7 +255,7 @@ while run:
             if mousex > 1150 and mousex < 1852 and mousey > 580 and mousey < 1000:
                     wn.blit(button_rec_red, (0, 0))
                     if mousepressed > 0:
-                        print('red')
+                      
                         stage_1 =True
                         stage_1_music()
                         zone_sel = False
@@ -202,60 +263,22 @@ while run:
             if mousex > 658 and mousex < 1356 and mousey > 202 and mousey < 535:
                     wn.blit(button_rec_blue, (0, 0))
                     if mousepressed > 0:
-                        print('hi')
+                       
                         zone_sel = False
 
             if mousex > 46 and mousex < 755 and mousey > 565 and mousey < 1015:
                     wn.blit(button_box_green, (0, 0))
                     if mousepressed > 0:
-                        print('hi')
+                        
                         zone_sel = False
     
     if stage_1:
         wn.blit(volcano_stage, (0,0))
-        if P1Y < 647:
-            P1Y += (grav)
-        if player1.jump1 and P1Y > 600:
-            jump2go = 20
-        if player1.right1:
-            P1X += 10
-        if player1.left1:
-            P1X -= 10
-        player1.update()
-        #player1.draw()
-        #wn.blit(player1.image, (P1X, P1Y))
-
-        keystate = pygame.key.get_pressed()
-
-        if P2Y < 647:
-            P2Y += (grav)
-        if keystate[pygame.K_i] and P2Y > 600:
-            jump1go = 20
-            print('hi')
-        if keystate[pygame.K_l]:
-            P2X += 10
-            print('hi')
-        if keystate[pygame.K_j]:
-            P2X -= 10
-        if jump1go > 0:
-            P2Y -= jump1go
-            jump1go -= 1
-        if jump2go > 0:
-            P1Y -= jump2go
-            jump2go -= 1
-        player2.update()
-        #player2.draw()
-        #wn.blit(player2.image, (P2X, P2Y))
-        distance = math.sqrt ((math.pow(P1X-P2X,2)) + (math.pow(P1Y-P2Y,2)))
-        if player1.punch and distance < 50:
-            pygame.mixer.Sound.play(punch_sound)
-            
-        player1_health_bar.draw(player1.hp)
-        player2_health_bar.draw(player2.hp)
-    print(f'{P2X},{P2Y}')
+        play()
+  
 
     
-    play()
+    
     player1.update()
     game_render()
     fps_s = time.time() - start
