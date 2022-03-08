@@ -1,4 +1,4 @@
-from re import T
+
 import pygame
 from pygame import mixer
 
@@ -64,7 +64,7 @@ class Player2:
             self.faceL = True
        else:
             self.left2 = False
-       if keystate[pygame.K_u]:
+       if keystate[pygame.K_RSHIFT]:
             self.punch = True
        else:
             self.punch = False

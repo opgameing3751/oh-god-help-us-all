@@ -69,7 +69,7 @@ class Player1:
         else:
             self.left1 = False
         
-        if keystate[pygame.K_q]:
+        if keystate[pygame.K_LSHIFT]:
             self.punch = True
         else:
             self.punch = False

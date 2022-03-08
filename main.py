@@ -55,11 +55,13 @@ start_button_click = pygame.image.load("start screen\start_button_cliced.png").c
 player_sel = pygame.image.load('start screen\player sel.png').convert_alpha()
 button_box = pygame.image.load('start screen/button_box.png').convert_alpha()
 button_box_blue = pygame.image.load("start screen/button_box_blue.png").convert_alpha()
-zone_sel_png = pygame.image.load("start screen\zone sel.png").convert()
+zone_sel_png = pygame.image.load("start screen\zone sel.png")
 button_box_green = pygame.image.load('start screen/button_box_green.png').convert_alpha()
 button_rec_blue = pygame.image.load('start screen/button_rec_Blue.png').convert_alpha()
 button_rec_red = pygame.image.load('start screen/button_rec_Red.png').convert_alpha()
 volcano_stage = pygame.image.load("BG\sample_volcano.png").convert()
+stadium = pygame.image.load('start screen\stadium.png').convert()
+forest = pygame.image.load("start screen/forest.png").convert()
 player1win = pygame.image.load('start screen\player1win.png')
 player2win = pygame.image.load("start screen\player2win.png")
 
@@ -307,17 +309,23 @@ while run:
             if mousex > 658 and mousex < 1356 and mousey > 202 and mousey < 535:
                     wn.blit(button_rec_blue, (0, 0))
                     if mousepressed > 0:
-                       
+                        stage_2 = True
                         zone_sel = False
 
             if mousex > 46 and mousex < 755 and mousey > 565 and mousey < 1015:
                     wn.blit(button_box_green, (0, 0))
                     if mousepressed > 0:
-                        
+                        stage_3 = True
                         zone_sel = False
     
     if stage_1:
         wn.blit(volcano_stage, (0,0))
+        play()
+    if stage_2:
+        wn.blit(stadium, (0,0))
+        play()
+    if stage_3:
+        wn.blit(forest, (0,0))
         play()
   
     if player1.hp == 0:
