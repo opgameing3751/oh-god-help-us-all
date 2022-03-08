@@ -1,6 +1,4 @@
-from asyncio import wait_for
 import pygame, time, sys, os ,dotenv, random, math
-
 from pygame.locals import *
 from pygame import mixer
 from Player_1 import Player1
@@ -48,8 +46,8 @@ mainClock = pygame.time.Clock()
 
 #img
 BG = pygame.image.load("BG/bg.png")
-player1pngboy = pygame.image.load("Char\Test_img_id.png").convert_alpha()
-player2pnggirl = pygame.image.load('Char/testpose1.png').convert_alpha()
+idleboy = pygame.image.load("Char\BOY\IdleBoy.png").convert_alpha()
+idlegirl = pygame.image.load('Char\GIRL\idlegirl.png').convert_alpha()
 pointer = pygame.image.load("pointer\pointer.png").convert_alpha()
 startBG = pygame.image.load('start screen\startBG.png').convert_alpha()
 start_button = pygame.image.load("start screen\start_button.png").convert_alpha()
@@ -93,10 +91,10 @@ class HealthBar():
 
 def play():
     global walkcount, P1Y,P1X,P2X,P2Y, jump1go, jump2go
-    print(player1.imageL)
+    
     if P1Y < 687:
         P1Y += (grav)
-    if player1.jump1 and P1Y > 600:
+    if player1.jump1 and P1Y > 680:
         jump2go = 20
     if player1.right1:
         P1X += 10
@@ -114,10 +112,10 @@ def play():
         jump1go = 20
         
     if keystate[pygame.K_l]:
-        P2X += 10
+        P2X += 5
         
     if keystate[pygame.K_j]:
-        P2X -= 10
+        P2X -= 5
     if jump1go > 0:
         P2Y -= jump1go
         jump1go -= 1
@@ -137,27 +135,46 @@ def play():
     #walking and ani
 
     walkcount += 1
+
+    #boy movement
     if walkcount >=32:
         walkcount = 0
-    if player1.right1:    
+
+    if player1.right1 and player1.punch:
+        wn.blit(player1.punk[walkcount // 7], (P1X,P1Y))
+    elif player1.right1:    
         wn.blit(player1.image[walkcount // 5], (P1X,P1Y))
-    elif player1.right1 == False and player1.left1 == False:
-        wn.blit(player1pngboy, (P1X, P1Y))
-    if player1.left1:
+    
+
+    idleboy_left = pygame.transform.flip(idleboy,True,False)
+    if player1.left1 and player1.punch:
+        wn.blit(player1.punkL[walkcount // 7], (P1X,P1Y))
+    elif player1.left1:
         wn.blit(player1.imageL[walkcount // 5], (P1X,P1Y))
-    elif player1.left1 == False and player1.right1 == False:
-        wn.blit(player1pngboy, (P1X, P1Y))
+    elif player1.left1 == False and player1.right1 == False and player1.faceR:
+        wn.blit(idleboy, (P1X, P1Y))
+    elif player1.left1 == False and player1.right1 == False and player1.faceL:
+        wn.blit(idleboy_left, (P1X,P1Y))
 
+    
 
+    #girl movement
+    if player2.right2 and player2.punch:
+        wn.blit(player2.image[walkcount // 8], (P2X,P2Y))
+    elif player2.right2:
+        wn.blit(player2.image[walkcount // 8], (P2X,P2Y))
+    
 
-    if player2.right2:
-        wn.blit(player2.image[walkcount // 9], (P2X,P2Y))
-    elif player2.right2 == False and player2.left2 == False:
-        wn.blit(player2pnggirl, (P2X, P2Y))
+    idlegirl_left = pygame.transform.flip(idlegirl,True,False)
     if player2.left2:
-        wn.blit(player2.imageL[walkcount // 9], (P2X, P2Y))
-    elif player2.left2 == False and player2.right2 == False:
-        wn.blit(player2pnggirl, (P2X, P2Y))
+        wn.blit(player2.imageL[walkcount // 8], (P2X, P2Y))
+    elif player2.left2 and player2.punch:
+        wn.blit(player2.imageL[walkcount // 8], (P2X, P2Y))
+    elif player2.left2 == False and player2.right2 == False and player2.faceR:
+        wn.blit(idlegirl, (P2X, P2Y))
+    elif player2.left2 == False and player2.right2 == False and player2.faceL:
+        wn.blit(idlegirl_left, (P2X, P2Y))
+    
 
 
 

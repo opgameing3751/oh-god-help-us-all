@@ -5,3 +5,7 @@ multiple sprites/
 splash start screen/
 score or timer
 game over screen
+
+
+use dot env
+lan?
