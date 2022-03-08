@@ -49,6 +49,20 @@ class Player2:
           for i in range(6):
                jumpAniL = pygame.transform.flip(self.death_Ani[i],True,False)
                self.jumpAniL.append(jumpAniL)
+
+          #death frames
+          self.death_Ani = pygame.image.load('Char/GIRL/Death/TBDH0A.png'), pygame.image.load('Char/GIRL/Death/TBDH0B.png'), pygame.image.load('Char/GIRL/Death/TBDH0C.png'), pygame.image.load('Char/GIRL/Death/TBDH0D.png')
+          self.death_AniL = []
+          for i in range(4):
+               death_AniL_ = pygame.transform.flip(self.death_Ani[i],True,False)
+               self.death_AniL.append(death_AniL_)
+          
+          #falling will have to be baced on player high so useing walkcount would not work - ima put this on hold for now
+          #falling frames
+          #self.falling = pygame.image.load("")
+          
+    
+    
     def update(self):
         
        self.mouse = pygame.mouse.get_pos()
