@@ -35,7 +35,20 @@ class Player2:
           for i in range(6):
                punkL_ = pygame.transform.flip(self.punk[i],True,False)
                self.punkL.append(punkL_)
-               
+          
+          #kick frames
+          self.kick = pygame.image.load('Char/GIRL/kick/TBKC0A.png'), pygame.image.load('Char/GIRL/kick/TBKC0B.png'), pygame.image.load('Char/GIRL/kick/TBKC0C.png'), pygame.image.load('Char/GIRL/kick/TBKC0D.png'), pygame.image.load('Char/GIRL/kick/TBKC0D.png'), pygame.image.load('Char/GIRL/kick/TBKC0E.png')
+          self.kickL = []
+          for i in range(6):
+               kickL_ = pygame.transform.flip(self.kick[i],True,False)
+               self.kickL.append(kickL_)
+          
+          #death frames
+          self.death_Ani = pygame.image.load("Char/GIRL/jump/C0JUMP.png"), pygame.image.load("Char/GIRL/jump/C0JUMP.png"), pygame.image.load("Char/GIRL/jump/C0JUMP.png"), pygame.image.load("Char/GIRL/jump/C0JUMP.png"), pygame.image.load("Char/GIRL/jump/C0JUMP.png"), pygame.image.load("Char/GIRL/jump/C0JUMP.png")
+          self.death_AniL = []
+          for i in range(6):
+               death_AniL = pygame.transform.flip(self.death_Ani[i],True,False)
+               self.death_Ani.append(death_AniL)
     def update(self):
         
        self.mouse = pygame.mouse.get_pos()
