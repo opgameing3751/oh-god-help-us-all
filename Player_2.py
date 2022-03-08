@@ -5,10 +5,11 @@ from pygame import mixer
 
 class Player2:
     
-    def __init__(self, max_hp, damage):
+    def __init__(self, max_hp, strength):
           self.max_hp = max_hp
           self.hp = max_hp
-          self.damage = damage
+          self.strength = strength
+          self.damage = 1
           #self.image = pygame.image.load('Char/testpose1.png')
           self.right2 = False
           self.left2 = False
@@ -63,4 +64,8 @@ class Player2:
             self.faceL = True
        else:
             self.left2 = False
+       if keystate[pygame.K_u]:
+            self.punch = True
+       else:
+            self.punch = False
         

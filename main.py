@@ -60,6 +60,8 @@ button_box_green = pygame.image.load('start screen/button_box_green.png').conver
 button_rec_blue = pygame.image.load('start screen/button_rec_Blue.png').convert_alpha()
 button_rec_red = pygame.image.load('start screen/button_rec_Red.png').convert_alpha()
 volcano_stage = pygame.image.load("BG\sample_volcano.png").convert()
+player1win = pygame.image.load('start screen\player1win.png')
+player2win = pygame.image.load("start screen\player2win.png")
 
 #sounds
 punch_sound = pygame.mixer.Sound("SOUNDS\punch.wav")
@@ -125,9 +127,7 @@ def play():
     player2.update()
     #player2.draw()
     #wn.blit(player2.image, (P2X, P2Y))
-    distance = math.sqrt ((math.pow(P1X-P2X,2)) + (math.pow(P1Y-P2Y,2)))
-    if player1.punch and distance < 50:
-        pygame.mixer.Sound.play(punch_sound)
+    
             
     player1_health_bar.draw(player1.hp)
     player2_health_bar.draw(player2.hp)
@@ -135,10 +135,24 @@ def play():
     #walking and ani
 
     walkcount += 1
-
-    #boy movement
     if walkcount >=32:
         walkcount = 0
+    
+    
+    def attack(self):
+        rand = random.randint(-5,5)
+        if player1.punch:
+            player1.damage = self.strength + rand
+        else:
+            player2.damage = self.strength + rand
+    #boy movement
+    distance = math.sqrt ((math.pow(P1X-P2X,2)) + (math.pow(P1Y-P2Y,2)))
+    if player1.punch and distance < 150 and walkcount > 25:
+        pygame.mixer.Sound.play(punch_sound)
+        player2.hp -= player1.damage
+    if player2.punch and distance < 150 and walkcount > 25:
+        pygame.mixer.Sound.play(punch_sound)
+        player1.hp -= player2.damage
 
     if player1.right1 and player1.punch:
         wn.blit(player1.punk[walkcount // 7], (P1X,P1Y))
@@ -151,25 +165,39 @@ def play():
         wn.blit(player1.punkL[walkcount // 7], (P1X,P1Y))
     elif player1.left1:
         wn.blit(player1.imageL[walkcount // 5], (P1X,P1Y))
+
+    elif player1.punch and player1.faceR:
+        wn.blit(player1.punk[walkcount // 7], (P1X,P1Y))
+    elif player1.punch and player1.faceL:
+        wn.blit(player1.punkL[walkcount // 7],(P1X,P1Y))
     elif player1.left1 == False and player1.right1 == False and player1.faceR:
         wn.blit(idleboy, (P1X, P1Y))
     elif player1.left1 == False and player1.right1 == False and player1.faceL:
         wn.blit(idleboy_left, (P1X,P1Y))
-
+    elif player1.punch and player1.faceR:
+        wn.blit(player1.punk[walkcount // 7], (P1X,P1Y))
+    elif player1.punch and player1.faceL:
+        wn.blit(player1.punkL[walkcount // 7],(P1X,P1Y))
     
 
     #girl movement
+    idlegirl_left = pygame.transform.flip(idlegirl,True,False)
     if player2.right2 and player2.punch:
-        wn.blit(player2.image[walkcount // 8], (P2X,P2Y))
+        wn.blit(player2.punk[walkcount // 8], (P2X,P2Y))
     elif player2.right2:
         wn.blit(player2.image[walkcount // 8], (P2X,P2Y))
     
-
-    idlegirl_left = pygame.transform.flip(idlegirl,True,False)
-    if player2.left2:
+    if player2.left2 and player2.punch:
+        wn.blit(player2.punkL[walkcount // 8], (P2X, P2Y))
+    elif player2.left2 and player2.punch == False:
         wn.blit(player2.imageL[walkcount // 8], (P2X, P2Y))
-    elif player2.left2 and player2.punch:
-        wn.blit(player2.imageL[walkcount // 8], (P2X, P2Y))
+    
+    
+    elif player2.punch and player2.faceR:
+        wn.blit(player2.punk[walkcount // 8], (P2X,P2Y))
+    elif player2.punch and player2.faceL:
+        wn.blit(player2.punkL[walkcount // 8],(P2X,P2Y))
+    
     elif player2.left2 == False and player2.right2 == False and player2.faceR:
         wn.blit(idlegirl, (P2X, P2Y))
     elif player2.left2 == False and player2.right2 == False and player2.faceL:
@@ -186,7 +214,6 @@ player1_health_bar = HealthBar(50,50, player1.hp, player1.max_hp)
 player2_health_bar = HealthBar(1250,50, player2.hp, player2.max_hp)
 RGB = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
 RGG = (random.randint(0,255),random.randint(0,255),random.randint(0,255)) 
-player1.hp = 75
 while run:
     
     
@@ -293,7 +320,20 @@ while run:
         wn.blit(volcano_stage, (0,0))
         play()
   
-
+    if player1.hp == 0:
+        wn.blit(player2win, (0,0))
+        stage_1 = False
+        stage_1_music = False
+        stage_2 = False
+        stage_3 = False
+        mixer.music.stop
+    if player2.hp == 0:
+        wn.blit(player1win, (0,0))
+        stage_1 = False
+        stage_1_music = False
+        stage_2 = False
+        stage_3 = False
+        mixer.music.stop
     
     
     player1.update()

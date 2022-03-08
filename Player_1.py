@@ -4,10 +4,11 @@ from pygame import mixer
 
 class Player1:
     
-    def __init__(self, max_hp, damage):
+    def __init__(self, max_hp, strength):
         self.max_hp = max_hp
         self.hp = max_hp
-        self.damage = damage
+        self.strength = strength
+        self.damage = 2
         self.image = pygame.image.load("Char/Test_img_id.png")
         self.right1 = False
         self.left1 = False
