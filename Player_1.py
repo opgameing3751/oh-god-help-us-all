@@ -36,6 +36,28 @@ class Player1:
             punkL_ = pygame.transform.flip(self.punk[i],True,False)
             self.punkL.append(punkL_)
 
+        #kick frames
+        self.kick = pygame.image.load('Char\BOY\kick/0AFBKC.png'), pygame.image.load('Char\BOY\kick/0BFBKC.png'), pygame.image.load('Char\BOY\kick/0CFBKC.png'), pygame.image.load('Char\BOY\kick/0DFBKC.png'), pygame.image.load('Char\BOY\kick/0EFBKC.png')
+        self.kickL = []
+        for i in range(5):
+            kickL_ = pygame.transform.flip(self.kick[i],True,False)
+            self.kickL.append(kickL_)
+        
+        #jump frames
+        self.jumpAni = pygame.image.load("Char/GIRL/jump/C0JUMP.png"), pygame.image.load("Char/GIRL/jump/C0JUMP.png")
+        self.jumpAniL = []
+        for i in range(2):
+            jumpAniL = pygame.transform.flip(self.death_Ani[i],True,False)
+            self.jumpAniL.append(jumpAniL)
+
+        #death frames
+        self.death_Ani = pygame.image.load('Char\BOY\death/0AFBDH.png'), pygame.image.load('Char\BOY\death/0BFBDH.png'), pygame.image.load('Char\BOY\death/0CFBDH.png'), pygame.image.load('Char\BOY\death/0DFBDH.png'), pygame.image.load('Char\BOY\death/0EFBDH.png'), pygame.image.load('Char\BOY\death/0FFBDH.png'), pygame.image.load('Char\BOY\death/0GFBDH.png')
+        self.death_AniL = []
+        for i in range(7):
+            death_AniL_ = pygame.transform.flip(self.death_Ani[i],True,False)
+            self.death_AniL.append(death_AniL_)
+        
+
     def update(self):
     
         self.mouse = pygame.mouse.get_pos()
