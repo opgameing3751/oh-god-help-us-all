@@ -99,7 +99,7 @@ def play():
     if P1Y < 687:
         P1Y += (grav)
     if player1.jump1 and P1Y > 680:
-        jump2go = 20
+        jump2go = 25
     if player1.right1:
         P1X += 10
     if player1.left1:
@@ -113,7 +113,7 @@ def play():
     if P2Y < 647:
          P2Y += (grav)
     if keystate[pygame.K_i] and P2Y > 600:
-        jump1go = 20
+        jump1go = 25
         
     if keystate[pygame.K_l]:
         P2X += 5
@@ -150,9 +150,17 @@ def play():
     #boy movement
     distance = math.sqrt ((math.pow(P1X-P2X,2)) + (math.pow(P1Y-P2Y,2)))
     if player1.punch and distance < 150 and walkcount > 25:
+        if player1.right1:
+            P2X += 10
+        elif player1.left1:
+            P2X -= 10
         pygame.mixer.Sound.play(punch_sound)
         player2.hp -= player1.damage
     if player2.punch and distance < 150 and walkcount > 25:
+        if player2.right2:
+            P1X += 10
+        elif player2.left2:
+            P1X -= 10
         pygame.mixer.Sound.play(punch_sound)
         player1.hp -= player2.damage
 
@@ -349,13 +357,13 @@ while run:
     fps_s = time.time() - start
     #if fps_s == 0.:
        
-    if fps_s < 40.:
-        fps1 = 1. / fps_s
-    if fps_s > 40.:
-        fps1 = fps_s
+    if fps_s > 1:
+        fps_s += 1
+    fps = 1. / fps_s
+    
     #else:
         
-    fps = int(fps1)
+    #fps = int(fps_s)
     pygame.display.update()
     mainClock.tick(60)
     

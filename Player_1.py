@@ -18,7 +18,7 @@ class Player1:
         self.animation_list = []
         self.frame_index = 0
         self.action = 0
-        self.update_time = pygame.time.get_ticks()
+     
         self.button = False
         self.faceL = True
         self.faceR = False
@@ -47,7 +47,7 @@ class Player1:
         self.jumpAni = pygame.image.load("Char/GIRL/jump/C0JUMP.png"), pygame.image.load("Char/GIRL/jump/C0JUMP.png")
         self.jumpAniL = []
         for i in range(2):
-            jumpAniL = pygame.transform.flip(self.death_Ani[i],True,False)
+            jumpAniL = pygame.transform.flip(self.jumpAni[i],True,False)
             self.jumpAniL.append(jumpAniL)
 
         #death frames
