@@ -150,17 +150,17 @@ def play():
     #boy movement
     distance = math.sqrt ((math.pow(P1X-P2X,2)) + (math.pow(P1Y-P2Y,2)))
     if player1.punch and distance < 150 and walkcount > 25:
-        if player1.right1:
-            P2X += 10
-        elif player1.left1:
-            P2X -= 10
+        if player1.faceR:
+            P2X += 20
+        elif player1.faceL:
+            P2X -= 20
         pygame.mixer.Sound.play(punch_sound)
         player2.hp -= player1.damage
     if player2.punch and distance < 150 and walkcount > 25:
-        if player2.right2:
-            P1X += 10
-        elif player2.left2:
-            P1X -= 10
+        if player2.faceR:
+            P1X += 30
+        elif player2.faceL:
+            P1X -= 30
         pygame.mixer.Sound.play(punch_sound)
         player1.hp -= player2.damage
 
@@ -191,16 +191,17 @@ def play():
     
 
     #girl movement
+    player2.update()
     idlegirl_left = pygame.transform.flip(idlegirl,True,False)
     if player2.right2 and player2.punch:
         wn.blit(player2.punk[walkcount // 8], (P2X,P2Y))
     elif player2.right2:
-        wn.blit(player2.image[walkcount // 8], (P2X,P2Y))
+        wn.blit(player2.image[walkcount // 4], (P2X,P2Y))
     
     if player2.left2 and player2.punch:
         wn.blit(player2.punkL[walkcount // 8], (P2X, P2Y))
     elif player2.left2 and player2.punch == False:
-        wn.blit(player2.imageL[walkcount // 8], (P2X, P2Y))
+        wn.blit(player2.imageL[walkcount // 4], (P2X, P2Y))
     
     
     elif player2.punch and player2.faceR:
