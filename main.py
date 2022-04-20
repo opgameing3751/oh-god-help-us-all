@@ -3,13 +3,24 @@ from pygame.locals import *
 from pygame import mixer
 from Player_1 import Player1
 from Player_2 import Player2
-from stage1 import stage_1
+
 
 #from stage1 import stage_1
+
+initial_count = 0
+dir = "maps"
+for path in os.listdir(dir):
+    if os.path.isfile(os.path.join(dir, path)) or os.path.isdir(os.path.join(dir, path)):
+        initial_count += 1
+print(initial_count)
+
+for i in range(initial_count):
+    map[i] = 
 
 pygame.init()
 
 #var
+initial_count = 0
 RED = (255,0,0)
 GREEN = (0,255,0)
 grav = 10
@@ -43,6 +54,9 @@ rightgirl = False
 
 wn = pygame.display.set_mode((res))
 mainClock = pygame.time.Clock()
+
+
+
 
 #img
 BG = pygame.image.load("BG/bg.png")
@@ -304,6 +318,7 @@ while run:
         mixer.music.play(1)
 
     if zone_sel:
+        
         wn.blit(zone_sel_png, (0,0))
         wait = time.time()
         if wait > 500:
