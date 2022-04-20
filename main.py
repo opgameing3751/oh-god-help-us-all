@@ -355,12 +355,10 @@ while run:
     
     player1.update()
     game_render()
-    fps_s = time.time() - start
+    fps = time.time() - start
     #if fps_s == 0.:
        
-    if fps_s > 1:
-        fps_s += 1
-    fps = 1. / fps_s
+    
     
     #else:
         
