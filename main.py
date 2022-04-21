@@ -1,4 +1,4 @@
-import pygame, time, sys, os ,dotenv, random, math
+import pygame, time, sys, os ,dotenv, random, math, pathlib
 from pygame.locals import *
 from pygame import mixer
 from Player_1 import Player1
@@ -12,6 +12,7 @@ dir = "maps"
 for path in os.listdir(dir):
     if os.path.isfile(os.path.join(dir, path)) or os.path.isdir(os.path.join(dir, path)):
         initial_count += 1
+initial_count -= 1 
 print(initial_count)
 
 
@@ -320,8 +321,9 @@ while run:
 
     if zone_sel:
         for I in range(initial_count):
-            pathname = 
-            os.path.isfile()
+            dotenv_path = path("maps/folderdata.env")
+            dotenv.load_dotenv(dotenv_path=dotenv_path)
+            
         
         wn.blit(zone_sel_png, (0,0))
         wait = time.time()
