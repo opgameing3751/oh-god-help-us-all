@@ -14,8 +14,9 @@ for path in os.listdir(dir):
         initial_count += 1
 print(initial_count)
 
-for i in range(initial_count):
-    map[i] = 
+
+    
+    
 
 pygame.init()
 
@@ -318,10 +319,14 @@ while run:
         mixer.music.play(1)
 
     if zone_sel:
+        for I in range(initial_count):
+            pathname = 
+            os.path.isfile()
         
         wn.blit(zone_sel_png, (0,0))
         wait = time.time()
-        if wait > 500:
+        
+        """if wait > 500:
             if mousex > 1150 and mousex < 1852 and mousey > 580 and mousey < 1000:
                     wn.blit(button_rec_red, (0, 0))
                     if mousepressed > 0:
@@ -340,7 +345,7 @@ while run:
                     wn.blit(button_box_green, (0, 0))
                     if mousepressed > 0:
                         stage_3 = True
-                        zone_sel = False
+                        zone_sel = False"""
     
     if stage_1:
         wn.blit(volcano_stage, (0,0))
