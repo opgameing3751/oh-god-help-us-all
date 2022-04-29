@@ -23,14 +23,15 @@ for i in range(initial_count):
                 with open(pathname):
                     print(f"found path - {pathname}")
 
-                    dotenv_path = path(pathname)
+                    dotenv_path = (pathname)
                     dotenv.load_dotenv(dotenv_path=dotenv_path)
-                    
-                    zones.append = 
+                    zone = os.environ.get("zonename")
+                    zones.append(zone)
 
 
             except IOError or FileNotFoundError:
                 print(f'IOError or File Not Found Error on - {pathname}')
+print(zones)
 print("sleeping")
 time.sleep(100)
     
