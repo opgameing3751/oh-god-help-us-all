@@ -13,27 +13,36 @@ for path in os.listdir(dir):
     if os.path.isfile(os.path.join(dir, path)) or os.path.isdir(os.path.join(dir, path)):
         initial_count += 1
 
-print(initial_count)
+print(f"data-{initial_count} map files found")
 zones = []
+zoneimg = []
 for i in range(initial_count):
             
-            try:
-                zonesel = (f'zone{i}')
-                pathname = (f'maps/{zonesel}/mapdata.env')
-                with open(pathname):
-                    print(f"found path - {pathname}")
+    try:
+        zonesel = (f'zone{i}')
+        pathname = (f'maps/{zonesel}/mapdata.env')
+        with open(pathname):
+            print(f"data-found path - {pathname}")
 
-                    dotenv_path = (pathname)
-                    dotenv.load_dotenv(dotenv_path=dotenv_path)
-                    zone = os.environ.get("zonename")
-                    zones.append(zone)
-
-
-            except IOError or FileNotFoundError:
-                print(f'IOError or File Not Found Error on - {pathname}')
-print(zones)
-print("sleeping")
-time.sleep(100)
+            dotenv_path = (pathname)
+            dotenv.load_dotenv(dotenv_path=dotenv_path, override=True)
+            zone = os.environ.get("zonename")
+            zones.append(zone)
+    except IOError or FileNotFoundError:
+        print(f'Error-IOError or File Not Found - {pathname}')
+for i in range(initial_count):
+    try:
+        zonesel = (f'zone{i}')
+        pathname = (f'maps/{zonesel}/zoneBG.png')
+        with open(pathname):
+            print(f'data-found path - {pathname}')
+            zoneimg.append(pygame.image.load(pathname))
+    except IOError or FileNotFoundError:
+        print(f'Error-IOError or File Not Found - {pathname}')
+print(f"data-all zones - {zones}")
+print(f'data-zone imgs {zoneimg}')
+print("wait-sleeping")
+time.sleep(1000000)
     
     
 
@@ -374,6 +383,39 @@ while run:
     if stage_2:
         wn.blit(stadium, (0,0))
         play()
+    if stage_3:
+        wn.blit(forest, (0,0))
+        play()
+  
+    if player1.hp == 0:
+        wn.blit(player2win, (0,0))
+        stage_1 = False
+        stage_1_music = False
+        stage_2 = False
+        stage_3 = False
+        mixer.music.stop
+    if player2.hp == 0:
+        wn.blit(player1win, (0,0))
+        stage_1 = False
+        stage_1_music = False
+        stage_2 = False
+        stage_3 = False
+        mixer.music.stop
+    
+    
+    player1.update()
+    game_render()
+    fps = time.time() - start
+    #if fps_s == 0.:
+       
+    
+    
+    #else:
+        
+    #fps = int(fps_s)
+    pygame.display.update()
+    mainClock.tick(60)
+    play()
     if stage_3:
         wn.blit(forest, (0,0))
         play()
