@@ -12,10 +12,27 @@ dir = "maps"
 for path in os.listdir(dir):
     if os.path.isfile(os.path.join(dir, path)) or os.path.isdir(os.path.join(dir, path)):
         initial_count += 1
-initial_count -= 1 
+
 print(initial_count)
+zones = []
+for i in range(initial_count):
+            
+            try:
+                zonesel = (f'zone{i}')
+                pathname = (f'maps/{zonesel}/mapdata.env')
+                with open(pathname):
+                    print(f"found path - {pathname}")
+
+                    dotenv_path = path(pathname)
+                    dotenv.load_dotenv(dotenv_path=dotenv_path)
+                    
+                    zones.append = 
 
 
+            except IOError or FileNotFoundError:
+                print(f'IOError or File Not Found Error on - {pathname}')
+print("sleeping")
+time.sleep(100)
     
     
 
@@ -320,9 +337,10 @@ while run:
         mixer.music.play(1)
 
     if zone_sel:
-        for I in range(initial_count):
-            dotenv_path = path("maps/folderdata.env")
-            dotenv.load_dotenv(dotenv_path=dotenv_path)
+        
+        
+
+        
             
         
         wn.blit(zone_sel_png, (0,0))
