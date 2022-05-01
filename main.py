@@ -1,4 +1,6 @@
+from ast import Try
 from distutils.log import error
+from msilib.schema import Error
 import pygame, time, sys, os ,dotenv, random, math, pathlib
 from pygame.locals import *
 from pygame import mixer
@@ -22,6 +24,7 @@ for path in os.listdir(dir):
 print(f"data-{initial_count} map files found")
 zones = []
 zoneimg = []
+zoneimg_small = []
 zonemusic = []
 for i in range(initial_count):
             
@@ -43,7 +46,10 @@ for i in range(initial_count):
         pathname = (f'maps/{zonesel}/zoneBG.png')
         with open(pathname):
             print(f'data-found path - {pathname}')
-            zoneimg.append(pygame.image.load(pathname))
+            zoneimg.append(pygame.image.load(pathname).convert())
+            pathnametran = pygame.image.load(pathname)
+            pathnametran = pygame.transform.scale(pathnametran, (674, 449))
+            zoneimg_small.append(pathnametran)
     except IOError or FileNotFoundError:
         print(f'Error-IOError or File Not Found - {pathname}')
         zoneimg.append(pygame.image.load("BG\missing Texture.png"))
@@ -56,7 +62,7 @@ for i in range(initial_count):
             zonemusic.append(pygame.mixer.Sound(pathname))
     except IOError or FileNotFoundError:
         print(f'Error-IOError or File Not Found - {pathname}')"""
-for i in range(initial_count):
+"""for i in range(initial_count):
             try:
                 print('yes')
                 maps[i] = itemgetter({i})(zoneimg)
@@ -64,14 +70,15 @@ for i in range(initial_count):
                 
             except:
                 print("error")
-                maps[i] = missingtex
+                maps[i] = missingtex"""
                 
 
 print(f"data-all zones - {zones}")
 print(f'data-zone imgs {zoneimg}')
+print(f'data-zone icons created - {zoneimg_small}')
 print(f'data-zone music {zonemusic}')
-print("wait-sleeping")
-time.sleep(100)
+#print("wait-sleeping")
+
 
 #there is a new glitch i have never seen after the code here
     
@@ -84,7 +91,7 @@ initial_count = 0
 RED = (255,0,0)
 GREEN = (0,255,0)
 grav = 10
-fps = 1
+
 mousex = 0
 mousey = 0 
 start_screen = True
@@ -145,7 +152,7 @@ punch_sound = pygame.mixer.Sound("SOUNDS\punch.wav")
 def game_render():
     global mousex, mousey
     mousex, mousey = player1.mouse
-    wn.blit(fpsrender, (0,0))
+   
     wn.blit(pointer, (player1.mouse))
 
 
@@ -316,8 +323,8 @@ while run:
           
     
     #font renders
-    font = pygame.font.Font(None,30)
-    fpsrender = font.render(f'FPS {fps}',True,(RGB))
+    font = pygame.font.Font(None,50)
+    
     
     if start_screen:
         wn.blit(startBG, (0,0))
@@ -380,24 +387,44 @@ while run:
         wn.blit(zone_sel_png, (0,0))
         wait = time.time()
         #once i get home take this out of if statments 
-        display = 1
-        if display > 4:
-            if display == 1:
-                wn.blit(itemgetter(display)(zoneimg), (118,80))
-                display += 1
-            if display == 2:
-                wn.blit(itemgetter(display)(zoneimg), (332,80))
-                display += 1
-            if display == 3:
-                wn.blit(itemgetter(display)(zoneimg), (550,80))
-                display += 1
-        else:
-            display = 1
-            
-        
+        display = 0
+        """try:
+            sel1 = font.render((f"{itemgetter(1)(zones)}"),True,(255,255,255))
+            sel2 = font.render((f"{itemgetter(2)(zones)}"),True,(255,255,255))
+            sel3 = font.render((f"{itemgetter(3)(zones)}"),True,(255,255,255))
 
+            wn.blit(sel1, (150,150))
+            wn.blit(sel2, (380,80))
+            wn.blit(sel3, (580,80))
+        except:
+            print(Error)"""
+
+        try:
+            sel1 = font.render((f"{itemgetter(0)(zones)}"),True,(0,0,0))
+        except:
+            print(Error)
+        try:
+            sel2 = font.render((f"{itemgetter(1)(zones)}"),True,(0,0,0))
+        except:
+            print(Error)
+        try:
+            sel3 = font.render((f"{itemgetter(2)(zones)}"),True,(0,0,0))
+        except:
+            print("Error-font create error sel3")
+
+        try: 
+            wn.blit(sel1, (250, 180))
+        except: 
+            print("Error-blit select 1")
+        try:
+            wn.blit(sel2, (250,400))
+        except:
+            print("Error-blit select 2")
+        try:
+            wn.blit(sel3, (250,600))
+        except:
+            print("Error-blit select 3")
         
-            
         
         
         
@@ -450,14 +477,14 @@ while run:
     
     player1.update()
     game_render()
-    fps = time.time() - start
-    #if fps_s == 0.:
+    
+  
        
     
     
-    #else:
+   
         
-    #fps = int(fps_s)
+   
     pygame.display.update()
     mainClock.tick(60)
     
@@ -481,14 +508,14 @@ while run:
     
     player1.update()
     game_render()
-    fps = time.time() - start
-    #if fps_s == 0.:
+   
+ 
        
     
     
-    #else:
+    
         
-    #fps = int(fps_s)
+   
     pygame.display.update()
     mainClock.tick(60)
     
