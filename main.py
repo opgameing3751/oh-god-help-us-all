@@ -1,12 +1,18 @@
+from distutils.log import error
 import pygame, time, sys, os ,dotenv, random, math, pathlib
 from pygame.locals import *
 from pygame import mixer
 from Player_1 import Player1
 from Player_2 import Player2
+from operator import itemgetter
 
 
 #from stage1 import stage_1
-
+pygame.init()
+res = (1920, 1080)
+wn = pygame.display.set_mode((res))
+mainClock = pygame.time.Clock()
+missingtex = pygame.image.load("BG\missing Texture.png")
 initial_count = 0
 dir = "maps"
 for path in os.listdir(dir):
@@ -16,6 +22,7 @@ for path in os.listdir(dir):
 print(f"data-{initial_count} map files found")
 zones = []
 zoneimg = []
+zonemusic = []
 for i in range(initial_count):
             
     try:
@@ -39,14 +46,38 @@ for i in range(initial_count):
             zoneimg.append(pygame.image.load(pathname))
     except IOError or FileNotFoundError:
         print(f'Error-IOError or File Not Found - {pathname}')
+        zoneimg.append(pygame.image.load("BG\missing Texture.png"))
+"""for i in range(initial_count):
+    try:
+        zonesel = (f'zone{i}')
+        pathname = (f'maps{zonesel}/zonemusic.mp3')
+        with open(pathname):
+            print(f'data-found path - {pathname}')
+            zonemusic.append(pygame.mixer.Sound(pathname))
+    except IOError or FileNotFoundError:
+        print(f'Error-IOError or File Not Found - {pathname}')"""
+for i in range(initial_count):
+            try:
+                print('yes')
+                maps[i] = itemgetter({i})(zoneimg)
+                
+                
+            except:
+                print("error")
+                maps[i] = missingtex
+                
+
 print(f"data-all zones - {zones}")
 print(f'data-zone imgs {zoneimg}')
+print(f'data-zone music {zonemusic}')
 print("wait-sleeping")
-time.sleep(1000000)
+time.sleep(100)
+
+#there is a new glitch i have never seen after the code here
     
     
 
-pygame.init()
+
 
 #var
 initial_count = 0
@@ -68,7 +99,7 @@ stage_1 = False
 stage_2 = False
 stage_3 = False
 pause_menu = False
-res = (1920, 1080)
+
 run = True
 mousepressed = 0
 P1X = 216
@@ -81,8 +112,7 @@ walkcount = 0
 rightboy = False
 rightgirl = False
 
-wn = pygame.display.set_mode((res))
-mainClock = pygame.time.Clock()
+
 
 
 
@@ -98,7 +128,7 @@ start_button_click = pygame.image.load("start screen\start_button_cliced.png").c
 player_sel = pygame.image.load('start screen\player sel.png').convert_alpha()
 button_box = pygame.image.load('start screen/button_box.png').convert_alpha()
 button_box_blue = pygame.image.load("start screen/button_box_blue.png").convert_alpha()
-zone_sel_png = pygame.image.load("start screen\zone sel.png")
+zone_sel_png = pygame.image.load("BG\select stage.png").convert()
 button_box_green = pygame.image.load('start screen/button_box_green.png').convert_alpha()
 button_rec_blue = pygame.image.load('start screen/button_rec_Blue.png').convert_alpha()
 button_rec_red = pygame.image.load('start screen/button_rec_Red.png').convert_alpha()
@@ -347,14 +377,29 @@ while run:
         mixer.music.play(1)
 
     if zone_sel:
-        
+        wn.blit(zone_sel_png, (0,0))
+        wait = time.time()
+        #once i get home take this out of if statments 
+        display = 1
+        if display > 4:
+            if display == 1:
+                wn.blit(itemgetter(display)(zoneimg), (118,80))
+                display += 1
+            if display == 2:
+                wn.blit(itemgetter(display)(zoneimg), (332,80))
+                display += 1
+            if display == 3:
+                wn.blit(itemgetter(display)(zoneimg), (550,80))
+                display += 1
+        else:
+            display = 1
+            
         
 
         
             
         
-        wn.blit(zone_sel_png, (0,0))
-        wait = time.time()
+        
         
         """if wait > 500:
             if mousex > 1150 and mousex < 1852 and mousey > 580 and mousey < 1000:
@@ -415,10 +460,8 @@ while run:
     #fps = int(fps_s)
     pygame.display.update()
     mainClock.tick(60)
-    play()
-    if stage_3:
-        wn.blit(forest, (0,0))
-        play()
+    
+   
   
     if player1.hp == 0:
         wn.blit(player2win, (0,0))
