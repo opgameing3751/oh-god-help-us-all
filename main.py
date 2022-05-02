@@ -16,6 +16,7 @@ wn = pygame.display.set_mode((res))
 mainClock = pygame.time.Clock()
 missingtex = pygame.image.load("BG\missing Texture.png")
 initial_count = 0
+fail = pygame.image.load("BG\LOAD FAIL.png")
 dir = "maps"
 for path in os.listdir(dir):
     if os.path.isfile(os.path.join(dir, path)) or os.path.isdir(os.path.join(dir, path)):
@@ -125,26 +126,36 @@ rightgirl = False
 
 
 #img
-BG = pygame.image.load("BG/bg.png")
-idleboy = pygame.image.load("Char\BOY\IdleBoy.png").convert_alpha()
-idlegirl = pygame.image.load('Char\GIRL\idlegirl.png').convert_alpha()
-pointer = pygame.image.load("pointer\pointer.png").convert_alpha()
-startBG = pygame.image.load('start screen\startBG.png').convert_alpha()
-start_button = pygame.image.load("start screen\start_button.png").convert_alpha()
-start_button_click = pygame.image.load("start screen\start_button_cliced.png").convert_alpha()
-player_sel = pygame.image.load('start screen\player sel.png').convert_alpha()
-button_box = pygame.image.load('start screen/button_box.png').convert_alpha()
-button_box_blue = pygame.image.load("start screen/button_box_blue.png").convert_alpha()
-zone_sel_png = pygame.image.load("BG\select stage.png").convert()
-button_box_green = pygame.image.load('start screen/button_box_green.png').convert_alpha()
-button_rec_blue = pygame.image.load('start screen/button_rec_Blue.png').convert_alpha()
-button_rec_red = pygame.image.load('start screen/button_rec_Red.png').convert_alpha()
-volcano_stage = pygame.image.load("BG\sample_volcano.png").convert()
-stadium = pygame.image.load('start screen\stadium.png').convert()
-forest = pygame.image.load("start screen/forest.png").convert()
-player1win = pygame.image.load('start screen\player1win.png')
-player2win = pygame.image.load("start screen\player2win.png")
-
+print("data-loading imgs")
+try:
+    
+    BG = pygame.image.load("BG/bg.png")
+    idleboy = pygame.image.load("Char\BOY\IdleBoy.png").convert_alpha()
+    idlegirl = pygame.image.load('Char\GIRL\idlegirl.png').convert_alpha()
+    pointer = pygame.image.load("pointer\pointer.png").convert_alpha()
+    startBG = pygame.image.load('start screen\startBG.png').convert_alpha()
+    start_button = pygame.image.load("start screen\start_button.png").convert_alpha()
+    start_button_click = pygame.image.load("start screen\start_button_cliced.png").convert_alpha()
+    player_sel = pygame.image.load('start screen\player sel.png').convert_alpha()
+    button_box = pygame.image.load('start screen/button_box.png').convert_alpha()
+    button_box_blue = pygame.image.load("start screen/button_box_blue.png").convert_alpha()
+    zone_sel_png = pygame.image.load("BG\select stage.png").convert()
+    button_box_green = pygame.image.load('start screen/button_box_green.png').convert_alpha()
+    button_rec_blue = pygame.image.load('start screen/button_rec_Blue.png').convert_alpha()
+    button_rec_red = pygame.image.load('start screen/button_rec_Red.png').convert_alpha()
+    volcano_stage = pygame.image.load("BG\sample_volcano.png").convert()
+    stadium = pygame.image.load('start screen\stadium.png').convert()
+    forest = pygame.image.load("start screen/forest.png").convert()
+    player1win = pygame.image.load('start screen\player1win.png')
+    player2win = pygame.image.load("start screen\player2win.png")
+    print("data-imgs loaded")
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing")
+    print("ending program")
+    wn.blit(fail, (0,0))
+    time.sleep(10)
+    pygame.quit()
+    running = 0
 #sounds
 punch_sound = pygame.mixer.Sound("SOUNDS\punch.wav")
 
