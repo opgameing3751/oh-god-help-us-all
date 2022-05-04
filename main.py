@@ -54,24 +54,15 @@ for i in range(initial_count):
     except IOError or FileNotFoundError:
         print(f'Error-IOError or File Not Found - {pathname}')
         zoneimg.append(pygame.image.load("BG\missing Texture.png"))
-"""for i in range(initial_count):
+or i in range(initial_count):
     try:
         zonesel = (f'zone{i}')
         pathname = (f'maps{zonesel}/zonemusic.mp3')
-        with open(pathname):
-            print(f'data-found path - {pathname}')
-            zonemusic.append(pygame.mixer.Sound(pathname))
+        print(f'data-found path - {pathname}')
+        zonemusic.append(pygame.mixer.Sound(pathname))
     except IOError or FileNotFoundError:
-        print(f'Error-IOError or File Not Found - {pathname}')"""
-"""for i in range(initial_count):
-            try:
-                print('yes')
-                maps[i] = itemgetter({i})(zoneimg)
-                
-                
-            except:
-                print("error")
-                maps[i] = missingtex"""
+        print(f'Error-IOError or File Not Found - {pathname}')
+
                 
 
 print(f"data-all zones - {zones}")
