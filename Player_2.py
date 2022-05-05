@@ -23,14 +23,14 @@ class Player2:
           self.faceR = False
           self.punch = False
           #walk frames
-          self.image = pygame.image.load('Char\GIRL\wank\GW0.png'), pygame.image.load('Char\GIRL\wank\GW1.png'), pygame.image.load('Char\GIRL\wank\GW2.png'), pygame.image.load('Char\GIRL\wank\GW3.png'), pygame.image.load('Char\GIRL\wank\GW4.png'), pygame.image.load('Char\GIRL\wank\GW5.png'), pygame.image.load('Char\GIRL\wank\GW6.png'), pygame.image.load('Char\GIRL\wank\GW7.png')
+          self.image = pygame.image.load('Char/GIRL/wank/GW0.png'), pygame.image.load('Char/GIRL/wank/GW1.png'), pygame.image.load('Char/GIRL/wank/GW2.png'), pygame.image.load('Char/GIRL/wank/GW3.png'), pygame.image.load('Char/GIRL/wank/GW4.png'), pygame.image.load('Char/GIRL/wank/GW5.png'), pygame.image.load('Char/GIRL/wank/GW6.png'), pygame.image.load('Char/GIRL/wank/GW7.png')
           self.imageL = []
           for i in range(8):
                imageL_ = pygame.transform.flip(self.image[i],True,False)
                self.imageL.append(imageL_)
 
           #punk frames
-          self.punk = pygame.image.load('Char\GIRL\punk\TBPN0A.png'), pygame.image.load('Char\GIRL\punk\TBPN0B.png'), pygame.image.load('Char\GIRL\punk\TBPN0C.png'), pygame.image.load('Char\GIRL\punk\TBPN0D.png'), pygame.image.load('Char\GIRL\punk\TBPN0E.png'), pygame.image.load('Char\GIRL\punk\TBPN0F.png')
+          self.punk = pygame.image.load('Char/GIRL/punk/TBPN0A.png'), pygame.image.load('Char/GIRL/punk/TBPN0B.png'), pygame.image.load('Char/GIRL/punk/TBPN0C.png'), pygame.image.load('Char/GIRL/punk/TBPN0D.png'), pygame.image.load('Char/GIRL/punk/TBPN0E.png'), pygame.image.load('Char/GIRL/punk/TBPN0F.png')
           self.punkL = []
           for i in range(6):
                punkL_ = pygame.transform.flip(self.punk[i],True,False)

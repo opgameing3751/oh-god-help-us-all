@@ -23,21 +23,21 @@ class Player1:
         self.faceL = True
         self.faceR = False
         #walking frames 
-        self.image = pygame.image.load('Char\BOY\wank\BW0.png'), pygame.image.load('Char\BOY\wank\BW1.png'), pygame.image.load('Char\BOY\wank\BW2.png'), pygame.image.load('Char/BOY/wank/BW3.png'),pygame.image.load('Char/BOY/wank/BW4.png'),pygame.image.load('Char/BOY/wank/BW5.png'),pygame.image.load('Char/BOY/wank/BW6.png')
+        self.image = pygame.image.load('Char/BOY/wank/BW0.png'), pygame.image.load('Char/BOY/wank/BW1.png'), pygame.image.load('Char/BOY/wank/BW2.png'), pygame.image.load('Char/BOY/wank/BW3.png'),pygame.image.load('Char/BOY/wank/BW4.png'),pygame.image.load('Char/BOY/wank/BW5.png'),pygame.image.load('Char/BOY/wank/BW6.png')
         self.imageL = []
         for i in range(7):
             imageL_ = pygame.transform.flip(self.image[i],True,False)
             self.imageL.append(imageL_)
 
         #punk frames
-        self.punk = pygame.image.load('Char\BOY\punk\punk1.png'), pygame.image.load('Char\BOY\punk\punk2.png'), pygame.image.load('Char\BOY\punk\punk3.png'), pygame.image.load('Char\BOY\punk\punk4.png'), pygame.image.load('Char\BOY\punk\punk5.png')
+        self.punk = pygame.image.load('Char/BOY/punk/punk1.png'), pygame.image.load('Char/BOY/punk/punk2.png'), pygame.image.load('Char/BOY/punk/punk3.png'), pygame.image.load('Char/BOY/punk/punk4.png'), pygame.image.load('Char/BOY/punk/punk5.png')
         self.punkL = []
         for i in range(5):
             punkL_ = pygame.transform.flip(self.punk[i],True,False)
             self.punkL.append(punkL_)
 
         #kick frames
-        self.kick = pygame.image.load('Char\BOY\kick/0AFBKC.png'), pygame.image.load('Char\BOY\kick/0BFBKC.png'), pygame.image.load('Char\BOY\kick/0CFBKC.png'), pygame.image.load('Char\BOY\kick/0DFBKC.png'), pygame.image.load('Char\BOY\kick/0EFBKC.png')
+        self.kick = pygame.image.load('Char/BOY/kick/0AFBKC.png'), pygame.image.load('Char/BOY/kick/0BFBKC.png'), pygame.image.load('Char/BOY/kick/0CFBKC.png'), pygame.image.load('Char/BOY/kick/0DFBKC.png'), pygame.image.load('Char/BOY/kick/0EFBKC.png')
         self.kickL = []
         for i in range(5):
             kickL_ = pygame.transform.flip(self.kick[i],True,False)
@@ -51,7 +51,7 @@ class Player1:
             self.jumpAniL.append(jumpAniL)
 
         #death frames
-        self.death_Ani = pygame.image.load('Char\BOY\death/0AFBDH.png'), pygame.image.load('Char\BOY\death/0BFBDH.png'), pygame.image.load('Char\BOY\death/0CFBDH.png'), pygame.image.load('Char\BOY\death/0DFBDH.png'), pygame.image.load('Char\BOY\death/0EFBDH.png'), pygame.image.load('Char\BOY\death/0FFBDH.png'), pygame.image.load('Char\BOY\death/0GFBDH.png')
+        self.death_Ani = pygame.image.load('Char/BOY/death/0AFBDH.png'), pygame.image.load('Char/BOY/death/0BFBDH.png'), pygame.image.load('Char/BOY/death/0CFBDH.png'), pygame.image.load('Char/BOY/death/0DFBDH.png'), pygame.image.load('Char/BOY/death/0EFBDH.png'), pygame.image.load('Char/BOY/death/0FFBDH.png'), pygame.image.load('Char/BOY/death/0GFBDH.png')
         self.death_AniL = []
         for i in range(7):
             death_AniL_ = pygame.transform.flip(self.death_Ani[i],True,False)
@@ -67,7 +67,7 @@ class Player1:
             pygame.quit()
             print("quit")
         if keystate[pygame.K_0]:
-            mixer.music.load("SOUNDS\jam.mp3")
+            mixer.music.load("SOUNDS/jam.mp3")
             mixer.music.play(1)
             
         if keystate[pygame.K_w]:

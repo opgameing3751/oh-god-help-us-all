@@ -1,6 +1,5 @@
 from ast import Try
 from distutils.log import error
-from msilib.schema import Error
 import pygame, time, sys, os ,dotenv, random, math, pathlib
 from pygame.locals import *
 from pygame import mixer
@@ -14,9 +13,9 @@ pygame.init()
 res = (1920, 1080)
 wn = pygame.display.set_mode((res))
 mainClock = pygame.time.Clock()
-missingtex = pygame.image.load("BG\missing Texture.png")
+missingtex = pygame.image.load("BG/missing Texture.png")
 initial_count = 0
-fail = pygame.image.load("BG\LOAD FAIL.png")
+fail = pygame.image.load("BG/LOAD FAIL.png")
 dir = "maps"
 for path in os.listdir(dir):
     if os.path.isfile(os.path.join(dir, path)) or os.path.isdir(os.path.join(dir, path)):
@@ -53,8 +52,8 @@ for i in range(initial_count):
             zoneimg_small.append(pathnametran)
     except IOError or FileNotFoundError:
         print(f'Error-IOError or File Not Found - {pathname}')
-        zoneimg.append(pygame.image.load("BG\missing Texture.png"))
-or i in range(initial_count):
+        zoneimg.append(pygame.image.load("BG/missing Texture.png"))
+for i in range(initial_count):
     try:
         zonesel = (f'zone{i}')
         pathname = (f'maps{zonesel}/zonemusic.mp3')
@@ -119,36 +118,89 @@ rightgirl = False
 #img
 print("data-loading imgs")
 try:
-    
     BG = pygame.image.load("BG/bg.png")
-    idleboy = pygame.image.load("Char\BOY\IdleBoy.png").convert_alpha()
-    idlegirl = pygame.image.load('Char\GIRL\idlegirl.png').convert_alpha()
-    pointer = pygame.image.load("pointer\pointer.png").convert_alpha()
-    startBG = pygame.image.load('start screen\startBG.png').convert_alpha()
-    start_button = pygame.image.load("start screen\start_button.png").convert_alpha()
-    start_button_click = pygame.image.load("start screen\start_button_cliced.png").convert_alpha()
-    player_sel = pygame.image.load('start screen\player sel.png').convert_alpha()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-BG")
+try:
+    idleboy = pygame.image.load("Char/BOY/IdleBoy.png").convert_alpha()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-idleboy")
+try:
+    idlegirl = pygame.image.load('Char/GIRL/idlegirl.png').convert_alpha()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-idlegirl")
+try:
+    pointer = pygame.image.load("pointer/pointer.png").convert_alpha()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-pointer")
+try:
+    startBG = pygame.image.load('start screen/StartBG.png').convert_alpha()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-startBG")
+try:
+    start_button = pygame.image.load("start screen/start_button.png").convert_alpha()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-start_button")
+try:
+    start_button_click = pygame.image.load("start screen/start_button_cliced.png").convert_alpha()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-start_button_click")
+try:
+    player_sel = pygame.image.load('start screen/player sel.png').convert_alpha()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-player_sel")
+try:
     button_box = pygame.image.load('start screen/button_box.png').convert_alpha()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-button_box")
+try:
     button_box_blue = pygame.image.load("start screen/button_box_blue.png").convert_alpha()
-    zone_sel_png = pygame.image.load("BG\select stage.png").convert()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-button_box_blue")
+try:
+    zone_sel_png = pygame.image.load("BG/select stage.png").convert()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-zone_sel_png")
+try:
     button_box_green = pygame.image.load('start screen/button_box_green.png').convert_alpha()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-button_box_green")
+try:
     button_rec_blue = pygame.image.load('start screen/button_rec_Blue.png').convert_alpha()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-button_rec_blue")
+try:
     button_rec_red = pygame.image.load('start screen/button_rec_Red.png').convert_alpha()
-    volcano_stage = pygame.image.load("BG\sample_volcano.png").convert()
-    stadium = pygame.image.load('start screen\stadium.png').convert()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-button_rec_red")
+try:
+    volcano_stage = pygame.image.load("BG/sample_volcano.png").convert()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-volcano_stage")
+try:
+    stadium = pygame.image.load('start screen/stadium.png').convert()
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-stadium")
+try:
     forest = pygame.image.load("start screen/forest.png").convert()
-    player1win = pygame.image.load('start screen\player1win.png')
-    player2win = pygame.image.load("start screen\player2win.png")
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-forest")
+try:
+    player1win = pygame.image.load('start screen/player1win.png')
+except:
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-player1win")
+try:
+    player2win = pygame.image.load("start screen/player2win.png")
     print("data-imgs loaded")
 except:
-    print("FATAL ERROR- main sprites faild to load or somthing is missing")
+    print("FATAL ERROR- main sprites faild to load or somthing is missing-player2win")
     print("ending program")
     wn.blit(fail, (0,0))
     time.sleep(10)
     pygame.quit()
     running = 0
 #sounds
-punch_sound = pygame.mixer.Sound("SOUNDS\punch.wav")
+punch_sound = pygame.mixer.Sound("SOUNDS/punch.wav")
 
 #def
 def game_render():
@@ -382,7 +434,7 @@ while run:
     
 
     def stage_1_music():
-        mixer.music.load("SOUNDS\Mick Gordon - 11. BFG Division.mp3")
+        mixer.music.load("SOUNDS/Mick Gordon - 11. BFG Division.mp3")
         mixer.music.play(1)
 
     if zone_sel:
