@@ -8,7 +8,7 @@ from Player_2 import Player2
 from operator import itemgetter
 
 
-#from stage1 import stage_1
+
 pygame.init()
 res = (1920, 1080)
 wn = pygame.display.set_mode((res))
@@ -26,6 +26,7 @@ zones = []
 zoneimg = []
 zoneimg_small = []
 zonemusic = []
+known_ERRORS = []
 for i in range(initial_count):
             
     try:
@@ -40,6 +41,7 @@ for i in range(initial_count):
             zones.append(zone)
     except IOError or FileNotFoundError:
         print(f'Error-IOError or File Not Found - {pathname}')
+        known_ERRORS.append(f"Error-IOError or File Not Found - {pathname}")
 for i in range(initial_count):
     try:
         zonesel = (f'zone{i}')
@@ -52,16 +54,17 @@ for i in range(initial_count):
             zoneimg_small.append(pathnametran)
     except IOError or FileNotFoundError:
         print(f'Error-IOError or File Not Found - {pathname}')
+        known_ERRORS.append(f"Error-IOError or File Not Found - {pathname}")
         zoneimg.append(pygame.image.load("BG/missing Texture.png"))
 for i in range(initial_count):
     try:
         zonesel = (f'zone{i}')
         pathname = (f'maps{zonesel}/zonemusic.mp3')
-        print(f'data-found path - {pathname}')
         zonemusic.append(pygame.mixer.Sound(pathname))
+        print(f'data-found path - {pathname}')
     except IOError or FileNotFoundError:
         print(f'Error-IOError or File Not Found - {pathname}')
-
+        known_ERRORS.append(f"Error-IOError or File Not Found - {pathname}")
                 
 
 print(f"data-all zones - {zones}")
@@ -86,7 +89,6 @@ grav = 10
 mousex = 0
 mousey = 0 
 start_screen = True
-mousepressed = False
 playersel = False
 player1_Girl = False
 player1_Boy = False
@@ -372,6 +374,7 @@ while run:
             print('game quit')
     if event.type == pygame.MOUSEBUTTONDOWN:
         mousepressed = 1
+        print('mouse clicked')
     if event.type == pygame.MOUSEBUTTONUP:
         mousepressed = 0
           
@@ -382,7 +385,10 @@ while run:
     
     if start_screen:
         wn.blit(startBG, (0,0))
-        
+        mapzone = font.render((f"loaded map files{zones}"),True,(0,0,0))
+        mapzoneimg = font.render((f'loaded backgrounds{zoneimg}'),True,(0,0,0))
+        mapzoneimg_small = font.render((f'loaded icons{zoneimg_small}'),True,(0,0,0))
+        Errors = font.render((f'Errors {}'),True,(0,0,0))
         #start button
         wn.blit(start_button, (895, 480))
         if mousex > 895 and mousex < 1114 and mousey > 480 and mousey < 552 and start_screen:
@@ -442,17 +448,6 @@ while run:
         wait = time.time()
         #once i get home take this out of if statments 
         display = 0
-        """try:
-            sel1 = font.render((f"{itemgetter(1)(zones)}"),True,(255,255,255))
-            sel2 = font.render((f"{itemgetter(2)(zones)}"),True,(255,255,255))
-            sel3 = font.render((f"{itemgetter(3)(zones)}"),True,(255,255,255))
-
-            wn.blit(sel1, (150,150))
-            wn.blit(sel2, (380,80))
-            wn.blit(sel3, (580,80))
-        except:
-            print(Error)"""
-
         try:
             sel1 = font.render((f"{itemgetter(0)(zones)}"),True,(0,0,0))
         except:
