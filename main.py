@@ -85,7 +85,7 @@ initial_count = 0
 RED = (255,0,0)
 GREEN = (0,255,0)
 grav = 10
-
+debug = 0
 mousex = 0
 mousey = 0 
 start_screen = True
@@ -363,6 +363,18 @@ RGB = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
 RGG = (random.randint(0,255),random.randint(0,255),random.randint(0,255)) 
 while run:
     
+    if keystate[pygame.K_F3]:
+            if debug == 1:
+                debugon = True
+            if debug == 0:
+                debugon == False
+
+    if debugon:
+        wn.blit(mapzone, (0,0))
+        wn.blit(mapzoneimg, (0,20))
+        wn.blit(mapzoneimg_small,(0,40))
+        wn.blit(Errors, (0,60))
+
     
     if pygame.mouse.get_visible():
                 pygame.mouse.set_visible(False)
@@ -378,17 +390,18 @@ while run:
     if event.type == pygame.MOUSEBUTTONUP:
         mousepressed = 0
           
-    
+    keystate = pygame.key.get_pressed()
     #font renders
-    font = pygame.font.Font(None,50)
+    font = pygame.font.Font(None,20)
     
-    
+
     if start_screen:
         wn.blit(startBG, (0,0))
         mapzone = font.render((f"loaded map files{zones}"),True,(0,0,0))
         mapzoneimg = font.render((f'loaded backgrounds{zoneimg}'),True,(0,0,0))
         mapzoneimg_small = font.render((f'loaded icons{zoneimg_small}'),True,(0,0,0))
-        Errors = font.render((f'Errors {}'),True,(0,0,0))
+        Errors = font.render((f'Errors {known_ERRORS}'),True,(0,0,0))
+        
         #start button
         wn.blit(start_button, (895, 480))
         if mousex > 895 and mousex < 1114 and mousey > 480 and mousey < 552 and start_screen:
@@ -400,7 +413,7 @@ while run:
             playersel = True
             start_screen = False
             mousepressed = 0
-
+    font = pygame.font.Font(None,50)
 
     if playersel:
         wn.blit(player_sel, (0,0))
