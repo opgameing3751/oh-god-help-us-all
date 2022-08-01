@@ -86,6 +86,7 @@ RED = (255,0,0)
 GREEN = (0,255,0)
 grav = 10
 debug = 0
+debugon = False
 mousex = 0
 mousey = 0 
 start_screen = True
@@ -362,7 +363,7 @@ player2_health_bar = HealthBar(1250,50, player2.hp, player2.max_hp)
 RGB = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
 RGG = (random.randint(0,255),random.randint(0,255),random.randint(0,255)) 
 while run:
-    
+    keystate = pygame.key.get_pressed()
     if keystate[pygame.K_F3]:
             if debug == 1:
                 debugon = True
@@ -487,7 +488,8 @@ while run:
         except:
             print("Error-blit select 3")
         
-        
+        if mousex > 150 and mousex < 400:
+            wn.blit(start_button_click, (150, 150))
         
         
         """if wait > 500:
