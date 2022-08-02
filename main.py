@@ -24,6 +24,7 @@ for path in os.listdir(dir):
 print(f"data-{initial_count} map files found")
 zones = []
 zoneimg = []
+zoneimgpath = []
 zoneimg_small = []
 zonemusic = []
 known_ERRORS = []
@@ -36,6 +37,7 @@ for i in range(initial_count):
             print(f"data-found path - {pathname}")
 
             dotenv_path = (pathname)
+            
             dotenv.load_dotenv(dotenv_path=dotenv_path, override=True)
             zone = os.environ.get("zonename")
             zones.append(zone)
@@ -46,6 +48,7 @@ for i in range(initial_count):
     try:
         zonesel = (f'zone{i}')
         pathname = (f'maps/{zonesel}/zoneBG.png')
+        zoneimgpath.append(pathname)
         with open(pathname):
             print(f'data-found path - {pathname}')
             zoneimg.append(pygame.image.load(pathname).convert())
@@ -100,6 +103,7 @@ stage_1 = False
 stage_2 = False
 stage_3 = False
 pause_menu = False
+sel = 0
 
 run = True
 mousepressed = 0
@@ -121,7 +125,7 @@ rightgirl = False
 #img
 print("data-loading imgs")
 try:
-    BG = pygame.image.load("BG/bg.png")
+    BG = pygame.image.load("BG/bg.png").convert_alpha()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-BG")
 try:
@@ -189,11 +193,15 @@ try:
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-forest")
 try:
-    player1win = pygame.image.load('start screen/player1win.png')
+    player1win = pygame.image.load('start screen/player1win.png').convert_alpha()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-player1win")
 try:
-    player2win = pygame.image.load("start screen/player2win.png")
+    button1_for_zonesel = pygame.image.load("start screen/reeeee.png").convert_alpha()
+except:
+     print("FATAL ERROR- main sprites faild to load or somthing is missing-button1_for_zonesel")
+try:
+    player2win = pygame.image.load("start screen/player2win.png").convert_alpha()
     print("data-imgs loaded")
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-player2win")
@@ -458,25 +466,30 @@ while run:
         mixer.music.play(1)
 
     if zone_sel:
+
         wn.blit(zone_sel_png, (0,0))
         wait = time.time()
         #once i get home take this out of if statments 
         display = 0
+        mapsel1 = f"{itemgetter(0+sel)(zoneimgpath)}"
+        print(mapsel1)
         try:
-            sel1 = font.render((f"{itemgetter(0)(zones)}"),True,(0,0,0))
+            sel1 = font.render((f"{itemgetter(0+sel)(zones)}"),True,(0,0,0))
+            mapsel1_ = pygame.image.load(mapsel1).convert_alpha
+            print(mapsel1_)
         except:
-            print(Error)
+            print(error)
         try:
-            sel2 = font.render((f"{itemgetter(1)(zones)}"),True,(0,0,0))
+            sel2 = font.render((f"{itemgetter(1+sel)(zones)}"),True,(0,0,0))
         except:
-            print(Error)
+            print(error)
         try:
-            sel3 = font.render((f"{itemgetter(2)(zones)}"),True,(0,0,0))
+            sel3 = font.render((f"{itemgetter(2+sel)(zones)}"),True,(0,0,0))
         except:
             print("Error-font create error sel3")
 
         try: 
-            wn.blit(sel1, (250, 180))
+            wn.blit(sel1, (240, 180))
         except: 
             print("Error-blit select 1")
         try:
@@ -488,8 +501,14 @@ while run:
         except:
             print("Error-blit select 3")
         
-        if mousex > 150 and mousex < 400:
-            wn.blit(start_button_click, (150, 150))
+        if mousey > 950 and mousex > 1580:
+            wn.blit(button1_for_zonesel, (0, 0))
+
+        if mousex > 80 and mousex < 500 and mousey > 100 and mousey < 300:
+            wn.blit(button1_for_zonesel, (0, 0))
+            if mousepressed:
+                zone_sel = False
+                stage_1 = True
         
         
         """if wait > 500:
@@ -514,7 +533,7 @@ while run:
                         zone_sel = False"""
     
     if stage_1:
-        wn.blit(volcano_stage, (0,0))
+        wn.blit(mapsel1_, (0,0))
         play()
     if stage_2:
         wn.blit(stadium, (0,0))
