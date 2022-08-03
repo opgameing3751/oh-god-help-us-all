@@ -67,7 +67,7 @@ class Player2:
         
           keystate = pygame.key.get_pressed()
 
-          print("player2 updated")        
+                
         
           if keystate[pygame.K_i]:
                self.jump2 = True
