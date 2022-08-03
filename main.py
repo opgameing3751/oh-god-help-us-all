@@ -503,6 +503,8 @@ while run:
         
         if mousey > 950 and mousex > 1580:
             wn.blit(button1_for_zonesel, (0, 0))
+            if mousepressed:
+                sel += 1
 
         if mousex > 80 and mousex < 500 and mousey > 100 and mousey < 300:
             wn.blit(button1_for_zonesel, (0, 0))
