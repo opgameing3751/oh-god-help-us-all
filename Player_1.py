@@ -95,7 +95,7 @@ class Player1:
             self.punch = True
         else:
             self.punch = False
-        pygame.display.update()
+        
       #test
 
 

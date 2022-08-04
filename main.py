@@ -8,27 +8,34 @@ from Player_2 import Player2
 from operator import itemgetter
 
 loading = True
-
+load_log = []
 pygame.init()
 res = (1920, 1080)
 wn = pygame.display.set_mode((res))
 mainClock = pygame.time.Clock()
 missingtex = pygame.image.load("BG/missing Texture.png").convert_alpha()
+load_log.append(
+    "BG/missing texture.png"
+)
 initial_count = 0
 fail = pygame.image.load("BG/LOAD FAIL.png").convert_alpha()
+load_log.append(
+    "BG/LOAD FAIL.PNG"
+)
+print(load_log)
 dir = "maps"
 
 for path in os.listdir(dir):
     if os.path.isfile(os.path.join(dir, path)) or os.path.isdir(os.path.join(dir, path)):
         initial_count += 1
-try:
+"""try:
     loadingimg = pygame.image.load()
-execpt:
+except:
     quit()
 
 while loading:
-    
-
+    wn.blit(loadingimg, (0,0))
+"""
 
 print(f"data-{initial_count} map files found")
 zones = []
@@ -102,7 +109,7 @@ initial_count = 0
 RED = (255,0,0)
 GREEN = (0,255,0)
 grav = 10
-debug = 0
+debug = 1
 debugon = False
 mousex = 0
 mousey = 0 
@@ -132,14 +139,25 @@ rightboy = False
 rightgirl = False
 
 
+font = pygame.font.Font(None,20)
+black = pygame.image.load("BG/black.png").convert()
+load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+wn.blit(black, (0,0))
+wn.blit(load_log_render, (0,0))
 
-
-
+pygame.display.update()
 
 #img
 print("data-loading imgs")
+load_log.append("data-loading imgs")
+
 try:
     BG = pygame.image.load("BG/bg.png").convert_alpha()
+    load_log.append("BG/bg.png")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-BG")
     print("ending program")
@@ -150,6 +168,11 @@ except:
     running = 0
 try:
     idleboy = pygame.image.load("Char/BOY/IdleBoy.png").convert_alpha()
+    load_log.append("Char/BOY/IdleBoy.png")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-idleboy")
     print("ending program")
@@ -160,6 +183,11 @@ except:
     running = 0
 try:
     idlegirl = pygame.image.load('Char/GIRL/idlegirl.png').convert_alpha()
+    load_log.append('Char/GIRL/idlegirl.png')
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-idlegirl")
     print("ending program")
@@ -170,6 +198,11 @@ except:
     running = 0
 try:
     pointer = pygame.image.load("pointer/pointer.png").convert_alpha()
+    load_log.append("pointer/pointer.png")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-pointer")
     print("ending program")
@@ -180,6 +213,11 @@ except:
     running = 0
 try:
     startBG = pygame.image.load('start screen/StartBG.png').convert_alpha()
+    load_log.append('start screen/StartBG.png')
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-startBG")
     print("ending program")
@@ -190,6 +228,11 @@ except:
     running = 0
 try:
     start_button = pygame.image.load("start screen/start_button.png").convert_alpha()
+    load_log.append("start screen/start_button.png")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-start_button")
     print("ending program")
@@ -200,6 +243,11 @@ except:
     running = 0
 try:
     start_button_click = pygame.image.load("start screen/start_button_cliced.png").convert_alpha()
+    load_log.append("start screen/start_button_cliced.png")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-start_button_click")
     print("ending program")
@@ -210,6 +258,11 @@ except:
     running = 0
 try:
     player_sel = pygame.image.load('start screen/player sel.png').convert_alpha()
+    load_log.append('start screen/player sel.png')
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-player_sel")
     print("ending program")
@@ -220,6 +273,11 @@ except:
     running = 0
 try:
     button_box = pygame.image.load('start screen/button_box.png').convert_alpha()
+    load_log.append('start screen/button_box.png')
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-button_box")
     print("ending program")
@@ -230,6 +288,11 @@ except:
     running = 0
 try:
     button_box_blue = pygame.image.load("start screen/button_box_blue.png").convert_alpha()
+    load_log.append("start screen/button_box_blue.png")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-button_box_blue")
     print("ending program")
@@ -240,6 +303,11 @@ except:
     running = 0
 try:
     zone_sel_png = pygame.image.load("BG/select stage.png").convert()
+    load_log.append("BG/select stage.png")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-zone_sel_png")
     print("ending program")
@@ -250,6 +318,11 @@ except:
     running = 0
 try:
     button_box_green = pygame.image.load('start screen/button_box_green.png').convert_alpha()
+    load_log.append('start screen/button_box_green.png')
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-button_box_green")
     print("ending program")
@@ -260,6 +333,11 @@ except:
     running = 0
 try:
     button_rec_blue = pygame.image.load('start screen/button_rec_Blue.png').convert_alpha()
+    load_log.append('start screen/button_rec_Blue.png')
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-button_rec_blue")
     print("ending program")
@@ -270,6 +348,11 @@ except:
     running = 0
 try:
     button_rec_red = pygame.image.load('start screen/button_rec_Red.png').convert_alpha()
+    load_log.append('start screen/button_rec_Red.png')
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-button_rec_red")
     print("ending program")
@@ -280,6 +363,11 @@ except:
     running = 0
 try:
     volcano_stage = pygame.image.load("BG/sample_volcano.png").convert()
+    load_log.append("BG/sample_volcano.png")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-volcano_stage")
     print("ending program")
@@ -290,6 +378,11 @@ except:
     running = 0
 try:
     stadium = pygame.image.load('start screen/stadium.png').convert()
+    load_log.append('start screen/stadium.png')
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-stadium")
     print("ending program")
@@ -300,6 +393,11 @@ except:
     running = 0
 try:
     forest = pygame.image.load("start screen/forest.png").convert()
+    load_log.append("start screen/forest.png")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-forest")
     print("ending program")
@@ -310,6 +408,11 @@ except:
     running = 0
 try:
     player1win = pygame.image.load('start screen/player1win.png').convert_alpha()
+    load_log.append('start screen/player1win.png')
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-player1win")
     print("ending program")
@@ -320,6 +423,11 @@ except:
     running = 0
 try:
     button1_for_zonesel = pygame.image.load("start screen/reeeee.png").convert_alpha()
+    load_log.append("start screen/reeeee.png")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-button1_for_zonesel")
     print("ending program")
@@ -330,6 +438,11 @@ except:
     running = 0
 try: 
     prev_button = pygame.image.load("start screen\prev.png").convert_alpha()
+    load_log.append("start screen\prev.png")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-prev_button")
     print("ending program")
@@ -340,6 +453,11 @@ except:
     running = 0
 try: 
     next_button = pygame.image.load("start screen/next_button.png").convert_alpha()
+    load_log.append("start screen/next_button.png")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-next_button")
     print("ending program")
@@ -350,7 +468,13 @@ except:
     running = 0
 try:
     player2win = pygame.image.load("start screen/player2win.png").convert_alpha()
+    load_log.append("start screen/player2win.png")
     print("data-imgs loaded")
+    load_log.append("data-imgs loaded")
+    load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+    wn.blit(black, (0,0))
+    wn.blit(load_log_render, (0,0))
+    pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-player2win")
     print("ending program")
@@ -359,6 +483,11 @@ except:
     time.sleep(10)
     pygame.quit()
     running = 0
+print(f'load log - {load_log}')
+load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
+wn.blit(black, (0,0))
+wn.blit(load_log_render, (0,0))
+pygame.display.update()
 #sounds
 punch_sound = pygame.mixer.Sound("SOUNDS/punch.wav")
 
@@ -368,7 +497,7 @@ def game_render():
     mousex, mousey = player1.mouse
    
     wn.blit(pointer, (player1.mouse))
-    pygame.display.update()
+   
 
 
 class HealthBar():
@@ -513,8 +642,9 @@ def play():
     elif player2.left2 == False and player2.right2 == False and player2.faceL:
         wn.blit(idlegirl_left, (P2X, P2Y))
     
+    
 
-
+clock = pygame.time.Clock()
 
 
 
@@ -525,6 +655,8 @@ player2_health_bar = HealthBar(1250,50, player2.hp, player2.max_hp)
 RGB = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
 RGG = (random.randint(0,255),random.randint(0,255),random.randint(0,255)) 
 while run:
+    clock.tick()
+    #print(clock.get_fps())
     keystate = pygame.key.get_pressed()
     if keystate[pygame.K_g]:
             if debug == 1:
@@ -602,27 +734,27 @@ while run:
         if player1_Boy and mousepressed == 0:
             zone_sel = True
             playersel = False
+            zone_update()
         if player1_Girl and mousepressed == 0:
             zone_sel = True
             playersel = False
+            zone_update()
         if player2_Boy and mousepressed == 0:
             zone_sel = True
             playersel = False
+            zone_update()
         if player2_Girl and mousepressed == 0:
             zone_sel = True
             playersel = False
+            zone_update()
     
 
     def stage_1_music():
         mixer.music.load("SOUNDS/Mick Gordon - 11. BFG Division.mp3")
         mixer.music.play(1)
 
-    if zone_sel:
-
-        wn.blit(zone_sel_png, (0,0))
-        wait = time.time()
-        #once i get home take this out of if statments 
-        display = 0
+    def zone_update():
+        global sel1, sel2, sel3, mapsel1_
         try:
             mapsel1 = f"{itemgetter(0+sel)(zoneimgpath)}"
         except:
@@ -631,7 +763,7 @@ while run:
         try:
             sel1 = font.render((f"{itemgetter(0+sel)(zones)}"),True,(0,0,0))
             mapsel1_ = pygame.image.load(mapsel1).convert_alpha()
-            print(mapsel1_)
+            
         except:
             print(error)
         try:
@@ -642,6 +774,18 @@ while run:
             sel3 = font.render((f"{itemgetter(2+sel)(zones)}"),True,(0,0,0))
         except:
             print("Error-font create error sel3")
+
+
+
+
+
+    if zone_sel:
+
+        wn.blit(zone_sel_png, (0,0))
+        #wait = time.time()
+        #once i get home take this out of if statments 
+        #display = 0
+        
 
         try: 
             wn.blit(sel1, (240, 180))
@@ -660,11 +804,13 @@ while run:
             wn.blit(next_button, (0, 0))
             if mousepressed:
                 sel += 1
+                zone_update()
                 mousepressed = False
         if mousey > 908 and mousex > 633 and mousex < 950:
             wn.blit(prev_button, (0,0))
             if mousepressed: 
                 sel -= 1
+                zone_update()
                 mousepressed = False
         if mousex > 80 and mousex < 500 and mousey > 100 and mousey < 300:
             wn.blit(button1_for_zonesel, (0, 0))
@@ -697,12 +843,7 @@ while run:
     
     if stage_1:
         wn.blit(mapsel1_, (0,0))
-        play()
-    if stage_2:
-        wn.blit(stadium, (0,0))
-        play()
-    if stage_3:
-        wn.blit(forest, (0,0))
+        
         play()
   
     if player1.hp == 0:
@@ -731,8 +872,7 @@ while run:
    
         
    
-    pygame.display.update()
-    mainClock.tick(60)
+    
     
    
   
@@ -754,15 +894,18 @@ while run:
     
 
     if debugon:
+
         font = pygame.font.Font(None,20)
         mapzone = font.render((f"loaded map files{zones}"),True,(255,255,255))
         mapzoneimg = font.render((f'loaded backgrounds{zoneimg}'),True,(255,255,255))
         mapzoneimg_small = font.render((f'loaded icons{zoneimg_small}'),True,(255,255,255))
         Errors = font.render((f'Errors {known_ERRORS}'),True,(255,255,255))
-        wn.blit(mapzone, (0,0))
-        wn.blit(mapzoneimg, (0,20))
-        wn.blit(mapzoneimg_small,(0,40))
-        wn.blit(Errors, (0,60))
+        
+        wn.blit(mapzone, (0,20))
+        wn.blit(mapzoneimg, (0,40))
+        wn.blit(mapzoneimg_small,(0,60))
+        wn.blit(Errors, (0,80))
+        
 
 
 
@@ -777,8 +920,10 @@ while run:
     
     
     
-        
-   
+    fps = font.render((f'FPS - {clock.get_fps()}'),True,(255,255,255))
+    wn.blit(fps, (0,0))
+    #print(clock.get_fps)
     pygame.display.update()
-    mainClock.tick(60)
+    if stage_1:
+        mainClock.tick(60)
     

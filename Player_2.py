@@ -93,7 +93,7 @@ class Player2:
 
           if keystate[pygame.K_RCTRL]:
                self.punch = True
-               print("puched")
+               
           else:
                self.punch = False
-          pygame.display.update()
+        
