@@ -7,7 +7,7 @@ from Player_1 import Player1
 from Player_2 import Player2
 from operator import itemgetter
 
-
+loading = True
 
 pygame.init()
 res = (1920, 1080)
@@ -17,9 +17,18 @@ missingtex = pygame.image.load("BG/missing Texture.png").convert_alpha()
 initial_count = 0
 fail = pygame.image.load("BG/LOAD FAIL.png").convert_alpha()
 dir = "maps"
+
 for path in os.listdir(dir):
     if os.path.isfile(os.path.join(dir, path)) or os.path.isdir(os.path.join(dir, path)):
         initial_count += 1
+try:
+    loadingimg = pygame.image.load()
+execpt:
+    quit()
+
+while loading:
+    
+
 
 print(f"data-{initial_count} map files found")
 zones = []
@@ -359,6 +368,7 @@ def game_render():
     mousex, mousey = player1.mouse
    
     wn.blit(pointer, (player1.mouse))
+    pygame.display.update()
 
 
 class HealthBar():

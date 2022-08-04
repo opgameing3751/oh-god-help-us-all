@@ -96,4 +96,4 @@ class Player2:
                print("puched")
           else:
                self.punch = False
-        
+          pygame.display.update()
