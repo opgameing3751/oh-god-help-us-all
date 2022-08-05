@@ -1,0 +1,10 @@
+1. add the rest of the buttons for the Zone sel screen
+2. fix dubble blits when pressing more then one movement button
+3. try to set game speed depending on the fps
+4. add more maps
+5. add more playble chariters
+6. clean up code
+7. clean up and fix file struchture(this one will take up a lot of time to do)
+8. add and fix sound files
+9. debug code
+10. find out what to do with player_1.py and player_2.py game files(if we want more chariters this might have to be removed for that or modifyed)

@@ -7,6 +7,8 @@ from Player_1 import Player1
 from Player_2 import Player2
 from operator import itemgetter
 
+ver = "1.7.3"
+
 loading = True
 load_log = []
 pygame.init()
@@ -900,11 +902,12 @@ while run:
         mapzoneimg = font.render((f'loaded backgrounds{zoneimg}'),True,(255,255,255))
         mapzoneimg_small = font.render((f'loaded icons{zoneimg_small}'),True,(255,255,255))
         Errors = font.render((f'Errors {known_ERRORS}'),True,(255,255,255))
-        
+        ver_render = font.render((f'Game version {ver}'),True,(255,255,255))
         wn.blit(mapzone, (0,20))
         wn.blit(mapzoneimg, (0,40))
         wn.blit(mapzoneimg_small,(0,60))
         wn.blit(Errors, (0,80))
+        wn.blit(ver_render, (0,100))
         
 
 
