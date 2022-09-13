@@ -112,7 +112,7 @@ RED = (255,0,0)
 GREEN = (0,255,0)
 grav = 10
 debug = 1
-debugon = False
+debugon = True
 mousex = 0
 mousey = 0 
 start_screen = True
@@ -700,7 +700,7 @@ player2 = Player2(150,5)
 player1_health_bar = HealthBar(50,50, player1.hp, player1.max_hp)
 player2_health_bar = HealthBar(1250,50, player2.hp, player2.max_hp)
 RGB = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
-RGG = (random.randint(0,255),random.randint(0,255),random.randint(0,255)) 
+RGG = (random.randint(50,255),random.randint(50,255),random.randint(50,255))
 while run:
     clock.tick()
     #print(clock.get_fps())
@@ -729,6 +729,11 @@ while run:
         mousepressed = 0
           
     keystate = pygame.key.get_pressed()
+    if keystate[pygame.K_y]:
+            if debugon == False:
+                debugon = True
+            elif debugon == True:
+                debugon = False
     #font renders
     font = pygame.font.Font(None,20)
     
