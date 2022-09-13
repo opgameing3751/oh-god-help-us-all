@@ -7,7 +7,7 @@ from Player_1 import Player1
 from Player_2 import Player2
 from operator import itemgetter
 
-ver = "1.7.3"
+ver = "1.7.4"
 
 loading = True
 load_log = []
@@ -159,7 +159,10 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 27.27, 25))
     pygame.display.update()
+    
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-BG")
     print("ending program")
@@ -174,6 +177,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 54.54, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-idleboy")
@@ -189,6 +194,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 81.81, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-idlegirl")
@@ -204,6 +211,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 109.08, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-pointer")
@@ -219,6 +228,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 136.35, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-startBG")
@@ -234,6 +245,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 163.62, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-start_button")
@@ -249,6 +262,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 190.89, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-start_button_click")
@@ -264,6 +279,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 218.16, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-player_sel")
@@ -279,6 +296,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 245.43, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-button_box")
@@ -294,6 +313,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 272.7, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-button_box_blue")
@@ -309,6 +330,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 299.97, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-zone_sel_png")
@@ -324,6 +347,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 327.24, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-button_box_green")
@@ -339,6 +364,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 354.51, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-button_rec_blue")
@@ -354,6 +381,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 381.78, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-button_rec_red")
@@ -369,6 +398,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 409.05, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-volcano_stage")
@@ -384,6 +415,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 436.32, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-stadium")
@@ -399,6 +432,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 463.59, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-forest")
@@ -414,6 +449,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 490.86, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-player1win")
@@ -429,6 +466,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 518.13, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-button1_for_zonesel")
@@ -444,6 +483,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 545.4, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-prev_button")
@@ -459,6 +500,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 572.67, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-next_button")
@@ -476,6 +519,8 @@ try:
     load_log_render = font.render((f'load log - {load_log}'),True,(255,255,255))
     wn.blit(black, (0,0))
     wn.blit(load_log_render, (0,0))
+    pygame.draw.rect(wn, (255,255,255), (650, 550, 600, 25))
+    pygame.draw.rect(wn, (0,0,255), (650, 550, 600, 25))
     pygame.display.update()
 except:
     print("FATAL ERROR- main sprites faild to load or somthing is missing-player2win")
